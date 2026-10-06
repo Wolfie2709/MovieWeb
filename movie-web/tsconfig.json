@@ -16,12 +16,18 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "ignoreDeprecations": "6.0",
+     "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },  
+    "jsx": "react-jsx",
     "plugins": [
       {
         "name": "next"
       }
     ]
+    
   },
   "include": [
     "next-env.d.ts",
