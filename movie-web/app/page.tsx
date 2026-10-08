@@ -2,16 +2,24 @@ import Image from "next/image";
 import React from "react";
 import CarouselBanner from "../components/carouselBanner";
 import { getNowPlayingMovies, getUpcomingMovies,  getDiscoverMovies, getPopularMovies, getTopRatedMovies } from "../lib/getMovies";
+import MovieContainer from "../components/MovieContainer";
 
 export default async function Home() {
   const nowPlayingMovies = await getNowPlayingMovies();
   const upcomingMovies = await getUpcomingMovies();
-  const discoverMoviees = await getDiscoverMovies();
+  const discoverMovies = await getDiscoverMovies();
   const popularMovies = await getPopularMovies();
   const topRatedMovies = await getTopRatedMovies();
   return (
-   <main>
+   <main suppressHydrationWarning className="bg-black">
     <CarouselBanner />
+    <div suppressHydrationWarning >
+      <MovieContainer movies={nowPlayingMovies} title="Now Playing" isVertical={true}/>
+      <MovieContainer movies={upcomingMovies} title="Upcoming" />
+      <MovieContainer movies={discoverMovies} title="Discover" />
+      <MovieContainer movies={popularMovies} title="Popular" />
+      <MovieContainer movies={topRatedMovies} title="Top Rated" />
+    </div>
    </main>
   );
 }

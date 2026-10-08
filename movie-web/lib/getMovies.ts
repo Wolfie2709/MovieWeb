@@ -2,26 +2,9 @@ import type { MovieDetails, SearchResults, Videos } from "../../type";
 
 const fetcher = async <T>(url: URL, cacheTime?: number): Promise<T | null> => {
     try {
-        url.searchParams.set("include_adult", "false");
-        url.searchParams.set("include_video", "false");
-        url.searchParams.set("sort_by", "popularity.desc");
-        url.searchParams.set("language", "en-US");
-        url.searchParams.set("page", "1");
 
         const token = process.env.TMDB_READ_ACCESS_KEY ?? process.env.TMDB_API_KEY;
         const headers = new Headers({ accept: "application/json", "Content-Type": "text/plain; charset=utf-8" });
-
-        if (token) {
-            headers.set("Authorization", `Bearer ${token}`);
-        } else {
-            const apiKey = process.env.TMDB_API_KEY;
-            if (!apiKey) {
-                console.warn("Missing TMDB API key. Set TMDB_READ_ACCESS_KEY or TMDB_API_KEY in .env");
-                return null;
-            }
-            url.searchParams.set("api_key", apiKey);
-        }
-
         const response = await fetch(url.toString(), {
             method: "GET",
             headers,

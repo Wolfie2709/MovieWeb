@@ -1,4 +1,7 @@
 import type { Config } from "tailwindcss"
+import scrollbarHide from 'tailwind-scrollbar-hide'
+import animate from 'tailwindcss-animate'
+
 
 const config: Config = {
     darkMode: "class",
@@ -36,7 +39,8 @@ const config: Config = {
                 "accordion-up": "accordion-up 0.2s ease-out",
             },
         }
-    }
+    },
+    plugins: [scrollbarHide, animate]
 }
 
 export default config;

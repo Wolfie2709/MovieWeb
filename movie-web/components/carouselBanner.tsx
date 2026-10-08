@@ -1,3 +1,4 @@
+
 import React from 'react'
 import {getDiscoverMovies} from "../lib/getMovies";
 import HeroCarousel from './HeroCarousel';
