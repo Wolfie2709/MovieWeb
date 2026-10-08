@@ -123,3 +123,9 @@ export interface Props {
     id?:string;
     keywords?: string;
 }
+
+export type TVDetails={
+    adult: boolean;
+    backdrop_path: string;
+    created_by: object[];
+}

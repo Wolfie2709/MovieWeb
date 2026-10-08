@@ -9,12 +9,13 @@ import {
 } from '@/lib/getMovies';
 
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     title?: string;
-  };
+  }>;
 };
 
-const MoviePageHome = async ({ searchParams: { title } }: Props) => {
+const MoviePageHome = async ({ searchParams }: Props) => {
+  const { title } = await searchParams;
   const category = title ?? 'Now Playing';
 
   let movies = [];
