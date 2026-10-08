@@ -44,25 +44,25 @@ const fetcher = async <T>(url: URL, cacheTime?: number): Promise<T | null> => {
 };
 
 export const getUpcomingMovies = async() => {
-    const url = new URL("https://api.themoviedb.org/3/movie/upcoming");
+    const url = new URL("https://api.themoviedb.org/3/movie/upcoming?api_key=4f85134e0e3de33d9af45eb9596b5735");
     const data = await fetcher<SearchResults>(url);
     return data?.results ?? [];
 } ;
 
 export const getTopRatedMovies = async() => {
-    const url = new URL("https://api.themoviedb.org/3/movie/top_rated");
+    const url = new URL("https://api.themoviedb.org/3/movie/top_rated?api_key=4f85134e0e3de33d9af45eb9596b5735");
     const data = await fetcher<SearchResults>(url);
     return data?.results ?? [];
 } ;
 
 export const getPopularMovies = async() => {
-    const url = new URL("https://api.themoviedb.org/3/movie/popular");
+    const url = new URL("https://api.themoviedb.org/3/movie/popular?api_key=4f85134e0e3de33d9af45eb9596b5735");
     const data = await fetcher<SearchResults>(url);
     return data?.results ?? [];
 } ;
 
 export const getDiscoverMovies = async(id?:string, keywords?: string) => {
-    const url = new URL("https://api.themoviedb.org/3/discover/movie");
+    const url = new URL("https://api.themoviedb.org/3/discover/movie?api_key=4f85134e0e3de33d9af45eb9596b5735");
     keywords && url.searchParams.set("with_keywords", keywords);
     id && url.searchParams.set("with_genres", id);
 
@@ -71,7 +71,7 @@ export const getDiscoverMovies = async(id?:string, keywords?: string) => {
 } ;
 
 export const getNowPlayingMovies = async() => {
-    const url = new URL("https://api.themoviedb.org/3/movie/now_playing");
+    const url = new URL("https://api.themoviedb.org/3/movie/now_playing?api_key=4f85134e0e3de33d9af45eb9596b5735");
     const data = await fetcher<SearchResults>(url);
     return data?.results ?? [];
 } ;
@@ -84,13 +84,13 @@ export const getSearchedMovies = async(term: string) => {
 };
 
 export const getMovieVideos = async(id?: string) => {
-    const url = new URL(`https://api.themoviedb.org/3/movie/${id}/videos`);
+    const url = new URL(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=4f85134e0e3de33d9af45eb9596b5735`);
     const data = await fetcher<Videos>(url);
     return data?.videos ?? [];
 };
 
 export const getMovieDetails = async(id?: string) => {
-    const url = new URL(`https://api.themoviedb.org/3/movie/${id}`);
+    const url = new URL(`https://api.themoviedb.org/3/movie/${id}?api_key=4f85134e0e3de33d9af45eb9596b5735`);
     const data = await fetcher<MovieDetails>(url);
     return data ?? null;
 };
