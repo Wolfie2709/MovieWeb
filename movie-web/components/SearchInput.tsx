@@ -27,7 +27,7 @@ const SearchInput = () => {
     const query = values.q.trim();
     if (!query) return;
 
-    router.push(`/Movie/${encodeURIComponent(query)}`);
+    router.push(`/Movie?query=${encodeURIComponent(query)}`);
     form.reset();
   }
   return (

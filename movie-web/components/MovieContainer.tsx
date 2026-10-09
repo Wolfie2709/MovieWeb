@@ -15,7 +15,7 @@ type Props = {
     isVertical?: boolean;
 }
 
-const MovieContainer = ({ title, movies, isVertical }: Props) => {
+const MovieContainer = ({ title, movies }: Props) => {
        const [emblaRef] = useEmblaCarousel({loop: false }, [Autoplay()])
        const viewMoreHref = `/Movie?title=${encodeURIComponent(title ?? "")}`;
     return (

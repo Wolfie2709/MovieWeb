@@ -38,6 +38,13 @@ export type SearchResults={
     total_results:number;
 }
 
+export type TVSearchResults={
+    page:number;
+    results: TV[];
+    total_pages:number;
+    total_results:number;
+}
+
 export type Genre={
     id: number;
     name: string;
@@ -61,7 +68,7 @@ export type VideoProps={
 };
 
 export type Videos={
-    videos: VideoProps[];
+    results: VideoProps[];
 }
 
 export type Collection={
@@ -128,4 +135,62 @@ export type TVDetails={
     adult: boolean;
     backdrop_path: string;
     created_by: object[];
+    episode_run_time: number[];
+    first_air_date: string;
+    genres: Genre[];
+    homepage: string;
+    id:number;
+    in_production: boolean;
+    languages: string[];
+    last_air_date: string;
+    last_episode_to_air:object[];
+    name: string;
+    next_episode_to_air: object[];
+    networks: object[];
+    number_of_episodes: number;
+    origin_country: string[];
+    original_language: string;
+    original_name: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    production_companies: Companies[];
+    production_countries: Production_Countries[];
+    seasons: object[];
+    spoken_languages: SpokenLanguages[];
+    status: string;
+    tagline: string;
+    type: string;
+    vote_average: number;
+    vote_count: number;
+};
+
+export type Production_Countries= {
+    iso_3166_1: string;
+    name:string;
+} 
+
+export type TVSeasons={
+
 }
+
+export type Credits={
+    id: string;
+    cast: Cast[];
+}
+
+export type Cast={
+    adult: boolean;
+    gender: number;
+    id: number; 
+    known_for_department: string;
+    name: string;
+    original_name: string;
+    popularity: number;
+    profile_path: string;
+    cast_id: number;
+    character: string;
+    credit_id: string;
+    order: number;
+}
+

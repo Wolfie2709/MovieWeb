@@ -2,7 +2,6 @@ import type { MovieDetails, SearchResults, Videos } from "../../type";
 
 const fetcher = async <T>(url: URL, cacheTime?: number): Promise<T | null> => {
     try {
-
         const token = process.env.TMDB_READ_ACCESS_KEY ?? process.env.TMDB_API_KEY;
         const headers = new Headers({ accept: "application/json", "Content-Type": "text/plain; charset=utf-8" });
         const response = await fetch(url.toString(), {
@@ -59,9 +58,9 @@ export const getNowPlayingMovies = async() => {
     return data?.results ?? [];
 } ;
 
-export const getSearchedMovies = async(term: string) => {
-    const url = new URL("https://api.themoviedb.org/3/search/movie");
-    url.searchParams.set("query", term);
+export const getSearchedMovies = async(query: string) => {
+    const url = new URL("https://api.themoviedb.org/3/search/movie?api_key=4f85134e0e3de33d9af45eb9596b5735");
+    url.searchParams.set("query", query);
     const data = await fetcher<SearchResults>(url);
     return data?.results ?? [];
 };
@@ -69,7 +68,7 @@ export const getSearchedMovies = async(term: string) => {
 export const getMovieVideos = async(id?: string) => {
     const url = new URL(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=4f85134e0e3de33d9af45eb9596b5735`);
     const data = await fetcher<Videos>(url);
-    return data?.videos ?? [];
+    return data?.results ?? [];
 };
 
 export const getMovieDetails = async(id?: string) => {
@@ -78,3 +77,14 @@ export const getMovieDetails = async(id?: string) => {
     return data ?? null;
 };
 
+export const getMovieCredits = async(id?: string) =>{
+    const url = new URL(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=4f85134e0e3de33d9af45eb9596b5735`);
+    const data = await fetcher(url);
+    return data ?? null; 
+}
+
+export const getSimilarMovies = async(id?:string) => {
+    const url = new URL(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=4f85134e0e3de33d9af45eb9596b5735`)
+    const data = await fetcher(url);
+    return data ?? null;
+}

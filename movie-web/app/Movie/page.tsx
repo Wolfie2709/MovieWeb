@@ -1,42 +1,49 @@
-import React from 'react';
-import MovieCard from '@/components/MovieCard';
-import {
-  getDiscoverMovies,
-  getNowPlayingMovies,
-  getPopularMovies,
-  getTopRatedMovies,
-  getUpcomingMovies,
-} from '@/lib/getMovies';
+"use client";
 
-type Props = {
-  searchParams: Promise<{
-    title?: string;
-  }>;
+import { Suspense } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
+import MovieCard from '@/components/MovieCard';
+import { getMoviesByCategory, searchMovies } from "@/lib/client/movieApi";
+
+const categoryNameMap: Record<string, string> = {
+  "Now Playing": "now_playing",
+  Upcoming: "upcoming",
+  Discover: "discover",
+  Popular: "popular",
+  "Top Rated": "top_rated",
 };
 
-const MoviePageHome = async ({ searchParams }: Props) => {
-  const { title } = await searchParams;
-  const category = title ?? 'Now Playing';
+const MoviePageHome = () => {
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("query")?.trim() ?? "";
+  const isSearchMode = searchQuery.length > 0;
+  const categoryTitle = searchParams.get("title") ?? "Now Playing";
+  const category = categoryNameMap[categoryTitle] ?? "now_playing";
+  const heading = isSearchMode ? `Search Results: ${searchQuery}` : categoryTitle;
 
-  let movies = [];
-
-  if (category === 'Now Playing') {
-    movies = await getNowPlayingMovies();
-  } else if (category === 'Upcoming') {
-    movies = await getUpcomingMovies();
-  } else if (category === 'Discover') {
-    movies = await getDiscoverMovies();
-  } else if (category === 'Popular') {
-    movies = await getPopularMovies();
-  } else if (category === 'Top Rated') {
-    movies = await getTopRatedMovies();
-  }
+  const {
+    data: movies = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: isSearchMode ? ["movies", "search", searchQuery] : ["movies", "category", category],
+    queryFn: () => (isSearchMode ? searchMovies(searchQuery) : getMoviesByCategory(category)),
+  });
 
   return (
     <main className="min-h-screen bg-black px-5 py-10 text-white">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold uppercase tracking-wider">{category}</h1>
+        <h1 className="text-3xl font-bold uppercase tracking-wider">{heading}</h1>
       </div>
+
+      {isLoading && <p className="text-gray-300">Loading movies...</p>}
+      {isError && (
+        <p className="text-red-400">
+          Failed to load movies: {error instanceof Error ? error.message : "Unknown error"}
+        </p>
+      )}
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {movies.map((movie) => (
@@ -47,4 +54,10 @@ const MoviePageHome = async ({ searchParams }: Props) => {
   );
 };
 
-export default MoviePageHome;
+export default function MoviePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black px-5 py-10 text-white">Loading movies...</div>}>
+      <MoviePageHome />
+    </Suspense>
+  );
+}
