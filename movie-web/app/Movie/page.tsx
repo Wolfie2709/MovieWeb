@@ -1,6 +1,7 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
+import {useSearchStore}from "@/lib/store/searchStore";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import MovieCard from '@/components/MovieCard';
@@ -16,11 +17,17 @@ const categoryNameMap: Record<string, string> = {
 
 const MoviePageHome = () => {
   const searchParams = useSearchParams();
+  const setKeywords = useSearchStore((state) => state.setKeyword);
   const searchQuery = searchParams.get("query")?.trim() ?? "";
   const isSearchMode = searchQuery.length > 0;
   const categoryTitle = searchParams.get("title") ?? "Now Playing";
   const category = categoryNameMap[categoryTitle] ?? "now_playing";
   const heading = isSearchMode ? `Search Results: ${searchQuery}` : categoryTitle;
+  useEffect(()=>{
+    if(searchQuery){
+      setKeywords(searchQuery);
+    }
+  }, [searchQuery, setKeywords]);
 
   const {
     data: movies = [],

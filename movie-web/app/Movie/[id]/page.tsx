@@ -49,9 +49,6 @@ enabled: Boolean(id),
 
   const {
     data: similarMovies = [],
-    isLoading: isSimilarLoading,
-    isError: isSimilarError,      
-    error: similarError,
   } = useQuery({
     queryKey: ["similarMovies", id],  
     queryFn: () => getSimilarMovies(id as string),
@@ -78,50 +75,62 @@ enabled: Boolean(id),
 
   return (
     <main className="min-h-screen bg-black px-5 py-10 text-white">
-      <h1 className="mb-3 text-3xl font-bold">{movieDetails?.title}</h1>
-      <Image
-              src={getImagePath(movieDetails?.poster_path || movieDetails?.backdrop_path)}
-              alt={movieDetails?.title || "Movie poster"}
-              width={160}
-              height={160}
-              className="h-20 w-20 rounded-lg object-cover shadow-md shadow-gray-900 sm:h-24 sm:w-24"
-            />
-      <p className="mb-6 max-w-3xl text-gray-300">{movieDetails?.overview}</p>
+      <div className= "mx-auto w-full max-w-7xl">
+       <div className="mb-8 grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
+  <div className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 shadow-xl">
+    <Image
+      src={getImagePath(movieDetails?.poster_path || movieDetails?.backdrop_path)}
+      alt={movieDetails?.title || "Movie poster"}
+      width={640}
+      height={960}
+      className="h-full w-full object-cover"
+    />
+  </div>
 
-      <div className="mb-8 grid gap-3 text-sm text-gray-200 sm:grid-cols-2 lg:grid-cols-4">
-        <p>Release: {movieDetails?.release_date || "N/A"}</p>
-        <p>Runtime: {movieDetails?.runtime ? `${movieDetails.runtime} min` : "N/A"}</p>
-        <p>Rating: {movieDetails?.vote_average?.toFixed(1) ?? "N/A"}</p>
-        <p>Status: {movieDetails?.status || "N/A"}</p>
-      </div>
+  <div>
+    <h1 className="mb-3 text-3xl font-bold">{movieDetails?.title}</h1>
 
-        <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-       {movieCredits?.cast?.slice(0, 5).map((cast) => (
-                    <CastCard key={cast.id} cast={cast}/>
-                ))}
-      </div>
+    <div className="mb-4 flex flex-wrap gap-2">
+      {movieDetails?.genres?.map((genre) => (
+        <span key={genre.id} className="rounded-full border border-white/20 px-3 py-1 text-xs text-gray-200">
+          {genre.name}
+        </span>
+      ))}
+    </div>
 
-      {featuredVideos.length > 0 ? (
-        <div className="grid gap-5 md:grid-cols-2">
-          {featuredVideos.map((video) => (
-            <div key={video.id}>
-              <p className="mb-2 text-sm text-gray-300">{video.name}</p>
-              <div className="aspect-video w-full overflow-hidden rounded-xl">
-                <iframe
-                  title={video.name}
-                  src={`https://www.youtube.com/embed/${video.key}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="h-full w-full"
-                />
+    <p className="max-w-3xl text-gray-300">{movieDetails?.overview}</p>
+
+    <h2 className="mb-4 mt-8 text-2xl font-bold tracking-wide">Casts</h2>
+    <div className="mb-2 flex flex-wrap gap-4">
+      {movieCredits?.cast?.slice(0, 5).map((cast) => (
+        <CastCard key={cast.id} cast={cast}/>
+      ))}
+    </div>
+  </div>
+</div>
+
+        {featuredVideos.length > 0 ? (
+          <div className="grid gap-5 md:grid-cols-2">
+            {featuredVideos.map((video) => (
+              <div key={video.id}>
+                <p className="mb-2 text-sm text-gray-300">{video.name}</p>
+                <div className="aspect-video w-full overflow-hidden rounded-xl">
+                  <iframe
+                    title={video.name}
+                    src={`https://www.youtube.com/embed/${video.key}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p className="text-gray-300">No videos found for this movie.</p>
-      )}
-   <SimilarContainer movies={similarMovies} title="Similar Movies" />
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-300">No videos found for this movie.</p>
+        )}
+    <SimilarContainer items={similarMovies} mediaType="movie" title="Similar Movies" />
+      </div>
     </main>
   );
 };

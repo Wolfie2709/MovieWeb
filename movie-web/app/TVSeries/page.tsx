@@ -1,25 +1,33 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import TVCard from '@/components/TVCard';
 import { getTVByCategory, searchTVSeries } from "@/lib/client/tvApi";
+import { useSearchStore } from "@/lib/store/searchStore";
 
 const categoryNameMap: Record<string, string> = {
-  OnTheAir: "on_the_air",
-  AiringToday: "airing_today",
+  "On The Air": "on_the_air",
+  "Airing Today": "airing_today",
   Popular: "popular",
   "Top Rated": "top_rated",
 };
 
 const TVSeriesPageHome = () => {
   const searchParams = useSearchParams();
+  const setKeywords = useSearchStore((state) => state.setKeyword);
   const searchQuery = searchParams.get("query")?.trim() ?? "";
   const isSearchMode = searchQuery.length > 0;
-  const categoryTitle = searchParams.get("title") ?? "OnTheAir";
+  const categoryTitle = searchParams.get("title") ?? "On The Air";
   const category = categoryNameMap[categoryTitle] ?? "on_the_air";
   const heading = isSearchMode ? `Search Results: ${searchQuery}` : categoryTitle;
+
+  useEffect(() => {
+  if (searchQuery) {
+    setKeywords(searchQuery);
+  }
+}, [searchQuery, setKeywords]);
 
   const {
     data: tvSeries = [],

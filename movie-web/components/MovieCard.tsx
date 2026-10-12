@@ -12,15 +12,11 @@ const MovieCard = ({movie}:{movie:Movie}) => {
         router.push(`/Movie/${movie.id}`);
     };
   return (
-    <div onClick={handleRoute} className="group relative shrink-0 cursor-pointer overflow-hidden rounded-xl transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.04] hover:drop-shadow-2xl">
-        <div className="relative">
-            <div className="absolute inset-0 z-10 bg-gradient-to-t from-gray-950 via-gray-900/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <p className="absolute bottom-5 left-5 z-20 translate-y-4 text-white font-bold opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">{movie.title}</p>
-            <Image src={getImagePath(movie?.backdrop_path || movie?.poster_path)}
-                alt={movie.title} width={1920} height={1080}
-                className="h-56 w-fit object-cover shadow-md shadow-gray-900 drop-shadow-xl transition duration-500 ease-out lg:min-w-[400px]"
-            />
+    <div onClick={handleRoute} className="group shrink-0 w-[170px] cursor-pointer sm:w-[190px]">
+        <div className="overflow-hidden rounded-xl border border-white/10 bg-zinc-900 shadow-md shadow-black/40 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl">
+            <Image src={getImagePath(movie?.poster_path || movie?.backdrop_path)} alt={movie.title} width={380} height={570} className="h-[255px] w-full object-cover sm:h-[285px]" />
         </div>
+         <h3 className="mt-2 line-clamp-2 text-sm font-semibold text-white">{movie.title}</h3>
     </div>
   )
 }

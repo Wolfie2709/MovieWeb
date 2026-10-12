@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import React from "react";
 import CarouselBanner from "../components/carouselBanner";
 import { getNowPlayingMovies, getUpcomingMovies,  getDiscoverMovies, getPopularMovies, getTopRatedMovies } from "../lib/getMovies";
@@ -19,7 +19,7 @@ export default async function Home() {
   return (
    <main suppressHydrationWarning className="bg-black">
     <CarouselBanner />
-    <div suppressHydrationWarning >
+    <div suppressHydrationWarning className= "space-y-8 pb-16">
       <MovieContainer movies={nowPlayingMovies} title="Now Playing" isVertical={true}/>
       <MovieContainer movies={upcomingMovies} title="Upcoming" />
       <MovieContainer movies={discoverMovies} title="Discover" />

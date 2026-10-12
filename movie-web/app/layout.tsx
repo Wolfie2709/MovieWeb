@@ -29,10 +29,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body suppressHydrationWarning className="min-h-full flex flex-col">
+      <body suppressHydrationWarning className="min-h-screen flex flex-col bg-black text-white">
         <Providers>
           <Header />
+          <main className= "flex-1 w-full">
           {children}
+          </main>
           <Footer />
         </Providers>
         </body>

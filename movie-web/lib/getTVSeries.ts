@@ -71,3 +71,15 @@ export const getTVSeriesDetails = async(id?: string) => {
     return data ?? null;
 };
 
+export const getSimilarTVSeries = async(id?: string) =>{
+    const url = new URL(`https://api.themoviedb.org/3/tv/${id}/similar?api_key=4f85134e0e3de33d9af45eb9596b5735`);
+    const data = await fetcher(url);
+    return data ?? null;
+};
+
+export const getTVSeriesCredits = async(id?: string) =>{
+    const url = new URL(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=4f85134e0e3de33d9af45eb9596b5735`);
+    const data = await fetcher(url);
+    return data ?? null;
+};
+
