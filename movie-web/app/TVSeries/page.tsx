@@ -13,6 +13,7 @@ const categoryNameMap: Record<string, string> = {
   "Airing Today": "airing_today",
   Popular: "popular",
   "Top Rated": "top_rated",
+  "TV Series": "popular",
 };
 
 const TVSeriesPageHome = () => {
@@ -20,15 +21,15 @@ const TVSeriesPageHome = () => {
   const setKeywords = useSearchStore((state) => state.setKeyword);
   const searchQuery = searchParams.get("query")?.trim() ?? "";
   const isSearchMode = searchQuery.length > 0;
-  const categoryTitle = searchParams.get("title") ?? "On The Air";
-  const category = categoryNameMap[categoryTitle] ?? "on_the_air";
+  const categoryTitle = searchParams.get("title") ?? "TV Series";
+  const category = categoryNameMap[categoryTitle] ?? "popular";
   const heading = isSearchMode ? `Search Results: ${searchQuery}` : categoryTitle;
 
   useEffect(() => {
-  if (searchQuery) {
-    setKeywords(searchQuery);
-  }
-}, [searchQuery, setKeywords]);
+    if (searchQuery) {
+      setKeywords(searchQuery);
+    }
+  }, [searchQuery, setKeywords]);
 
   const {
     data: tvSeries = [],
@@ -41,28 +42,37 @@ const TVSeriesPageHome = () => {
   });
 
   return (
-    <main className="min-h-screen bg-black px-4 md:px-6 lg:px-8 py-10 text-white">
-      <div className="mx-auto max-w-[1440px]">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold uppercase tracking-wider">{heading}</h1>
+    <main className="min-h-screen bg-[#050505] text-white">
+      <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] to-[#050505] pb-8 pt-24 md:pt-28">
+        <div className="mx-auto max-w-[1500px] px-4 md:px-8 lg:px-10">
+          <div className="mb-6 text-center">
+            <h1 className="text-4xl font-black uppercase tracking-[-0.06em] text-white md:text-6xl">
+              {heading}
+            </h1>
+          </div>
+
+          <div className="ml-0 w-full max-w-[680px]">
+            <SearchInput />
+          </div>
+        </div>
       </div>
 
-      {isLoading && <p className="text-gray-300">Loading TV series...</p>}
-      {isError && (
-        <p className="text-red-400">
-          Failed to load TV series: {error instanceof Error ? error.message : "Unknown error"}
-        </p>
-      )}
+      <div className="mx-auto max-w-[1500px] px-4 pb-16 pt-8 md:px-8 lg:px-10">
+        {isLoading && (
+          <p className="py-8 text-gray-300">Loading TV series...</p>
+        )}
 
-        <div className="flex items-center relative rounded-full bg-black w-full md:w-fit lg:w-fit">
-        <SearchInput />
-      </div>
+        {isError && (
+          <p className="py-8 text-red-400">
+            Failed to load TV series: {error instanceof Error ? error.message : "Unknown error"}
+          </p>
+        )}
 
-      <div className="mt-16 grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4 lg:grid-cols-6">
-        {tvSeries.map((tv) => (
-          <TVCard key={tv.id} tv={tv} mode="grid"/>
-        ))}
-      </div>
+        <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+          {tvSeries.map((tv) => (
+            <TVCard key={tv.id} tv={tv} mode="grid" />
+          ))}
+        </div>
       </div>
     </main>
   );

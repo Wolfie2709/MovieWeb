@@ -21,7 +21,7 @@ const MoviePageHome = () => {
   const setKeywords = useSearchStore((state) => state.setKeyword);
   const searchQuery = searchParams.get("query")?.trim() ?? "";
   const isSearchMode = searchQuery.length > 0;
-  const categoryTitle = searchParams.get("title") ?? "Now Playing";
+  const categoryTitle = searchParams.get("title") ?? "Movies";
   const category = categoryNameMap[categoryTitle] ?? "now_playing";
   const heading = isSearchMode ? `Search Results: ${searchQuery}` : categoryTitle;
 
@@ -42,23 +42,22 @@ const MoviePageHome = () => {
   });
 
   return (
-    <main className="min-h-screen bg-[#050505] px-4 pb-16 pt-8 text-white md:px-8 lg:px-10">
-      <div className="mx-auto max-w-[1500px]">
-        <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-red-500">
-              Discover
-            </p>
-            <h1 className="text-3xl font-black uppercase tracking-[-0.05em] text-white md:text-5xl">
+    <main className="min-h-screen bg-[#050505] text-white">
+      <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] to-[#050505] pb-8 pt-24 md:pt-28">
+        <div className="mx-auto max-w-[1500px] px-4 md:px-8 lg:px-10">
+          <div className="mb-6 text-center">
+            <h1 className="text-l font-black uppercase tracking-[-0.06em] text-white md:text-6xl">
               {heading}
             </h1>
           </div>
 
-          <div className="w-full max-w-lg md:w-auto">
+          <div className="ml-0 w-full max-w-[680px]">
             <SearchInput />
           </div>
         </div>
+      </div>
 
+      <div className="mx-auto max-w-[1500px] px-4 pb-16 pt-8 md:px-8 lg:px-10">
         {isLoading && (
           <p className="py-8 text-gray-300">Loading movies...</p>
         )}
@@ -69,7 +68,7 @@ const MoviePageHome = () => {
           </p>
         )}
 
-        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+        <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {movies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} mode="grid" />
           ))}

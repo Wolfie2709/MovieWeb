@@ -40,18 +40,22 @@ const SearchInput = ({searchPath}: SearchInputProps) => {
     router.push(`${targetPath}?query=${encodeURIComponent(query)}`);
   }
   return (
-    <form role="search" className="flex items-center relative rounded-full bg-black w-full md:w-fit lg:w-fit" onSubmit={form.handleSubmit(onSubmit)}>
-      <Field orientation="horizontal" className="items-center gap-2 pb-1">
+    <form
+      role="search"
+      className="flex items-center overflow-hidden rounded-full border border-white/10 bg-black/80 shadow-[0_0_30px_rgba(0,0,0,0.4)]"
+      onSubmit={form.handleSubmit(onSubmit)}
+    >
+      <Field orientation="horizontal" className="w-full items-center gap-2">
         <FieldLabel htmlFor="movie-search" className="sr-only">
           Search movies
         </FieldLabel>
-        <FieldContent>
+        <FieldContent className="w-full">
           <Input
             id="movie-search"
             name="q"
             type="search"
-            placeholder="Search movies..."
-            className="outline-none border-none rounded-full px-6 py-2 bg-black placeholder-gray-500 text-white flex-1 md:flex-auto md:w-96"
+            placeholder="Enter keyword"
+            className="w-full border-0 bg-transparent px-4 py-3 text-base text-white placeholder:text-gray-400 focus-visible:ring-0 md:text-base"
             {...form.register("q", {
               onChange: (event) => {
                 setKeyword(event.target.value);
@@ -59,8 +63,13 @@ const SearchInput = ({searchPath}: SearchInputProps) => {
             })}
           />
         </FieldContent>
-        <Button type="submit" variant="outline" size="icon" aria-label="Search" className="btn-sm btn-primary py-1">
-          <Search />
+
+        <Button
+          type="submit"
+          aria-label="Search"
+          className="h-[44px] rounded-full bg-red-600 px-5 text-sm font-semibold text-white shadow-[0_0_20px_rgba(239,68,68,0.6)] transition-colors duration-200 hover:bg-red-500 md:px-6 md:text-base"
+        >
+          Search
         </Button>
       </Field>
     </form>

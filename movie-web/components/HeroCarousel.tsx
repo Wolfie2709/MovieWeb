@@ -19,14 +19,14 @@ const HeroCarousel = ({ movies }: Props) => {
   if (!movies?.length) return null;
 
   return (
-    <section className="relative isolate min-h-[92vh] overflow-hidden bg-black">
+    <section className="relative isolate h-screen overflow-hidden min-h-screen bg-background text-foreground">
       <Swiper
         modules={[Autoplay]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop
         speed={700}
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-        className="h-[92vh]"
+        className="h-screen"
       >
         {movies.map((movie, index) => {
           const bgImage = getImagePath(movie.backdrop_path || movie.poster_path, true);
@@ -46,7 +46,7 @@ const HeroCarousel = ({ movies }: Props) => {
               </div>
 
               <div className="relative z-20 flex h-full items-center">
-                <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-8 px-6 pb-10 pt-28 md:px-10 md:pb-16 xl:px-12">
+                <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-8 px-6 pb-10 pt-16 md:px-10 md:pb-16 md:pt-20 xl:px-12">
                   <div
                     className="max-w-[980px] -translate-y-4"
                   >

@@ -6,23 +6,16 @@ import {useState, useEffect} from "react";
 
 const Header = () => {
   const pathname = usePathname();
-const [isPastHero, setIsPastHero] = useState(false);
-
-useEffect(() => {
-  const handleScroll = () => {
-    const hero = document.getElementById("hero-banner");
-    if (!hero) return;
-
-    const heroBottom = hero.offsetTop + hero.offsetHeight;
-    setIsPastHero(window.scrollY > heroBottom - 120);
-  };
-
-  handleScroll();
-  window.addEventListener("scroll", handleScroll);
-
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
-
+  const [isAtTop, setIsAtTop] = useState(true);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsAtTop(window.scrollY === 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const links = [
     { name: "Home", href: "/" },
     { name: "Movies", href: "/Movie" },
@@ -30,8 +23,8 @@ useEffect(() => {
   ]
   return (
    <header
-  className={`sticky top-0 z-50 border-b border-white/10 transition-all duration-500 ease-in-out ${
-    isPastHero ?  "bg-black" : "bg-transparent"
+  className={`fixed left-0 top-0 z-50 w-full  transition-all duration-500 ease-in-out ${
+    isAtTop ? "bg-transparent" : " backdrop-blur-xl bg-black/85"
   }`}
 >
       <div suppressHydrationWarning className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-4 py-4 md:px-8 lg:px-12">

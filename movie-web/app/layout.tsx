@@ -31,11 +31,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <body suppressHydrationWarning className="min-h-screen flex flex-col bg-black text-white">
         <Providers>
-          <Header />
           <main className= "flex-1 w-full">
+          <Header />
           {children}
+           <Footer />
           </main>
-          <Footer />
         </Providers>
         </body>
     </html>
