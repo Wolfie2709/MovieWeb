@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import TVCard from '@/components/TVCard';
 import { getTVByCategory, searchTVSeries } from "@/lib/client/tvApi";
 import { useSearchStore } from "@/lib/store/searchStore";
+import SearchInput from "@/components/SearchInput";
 
 const categoryNameMap: Record<string, string> = {
   "On The Air": "on_the_air",
@@ -40,7 +41,8 @@ const TVSeriesPageHome = () => {
   });
 
   return (
-    <main className="min-h-screen bg-black px-5 py-10 text-white">
+    <main className="min-h-screen bg-black px-4 md:px-6 lg:px-8 py-10 text-white">
+      <div className="mx-auto max-w-[1440px]">
       <div className="mb-8">
         <h1 className="text-3xl font-bold uppercase tracking-wider">{heading}</h1>
       </div>
@@ -52,10 +54,15 @@ const TVSeriesPageHome = () => {
         </p>
       )}
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="flex items-center relative rounded-full bg-black w-full md:w-fit lg:w-fit">
+        <SearchInput />
+      </div>
+
+      <div className="mt-16 grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4 lg:grid-cols-6">
         {tvSeries.map((tv) => (
-          <TVCard key={tv.id} tv={tv} />
+          <TVCard key={tv.id} tv={tv} mode="grid"/>
         ))}
+      </div>
       </div>
     </main>
   );

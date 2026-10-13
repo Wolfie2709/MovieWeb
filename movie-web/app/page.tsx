@@ -19,7 +19,7 @@ export default async function Home() {
   return (
    <main suppressHydrationWarning className="bg-black">
     <CarouselBanner />
-    <div suppressHydrationWarning className= "space-y-8 pb-16">
+    <div suppressHydrationWarning className= "space-y-8 pb-16 max-w-screen-2xl mx-auto">
       <MovieContainer movies={nowPlayingMovies} title="Now Playing" isVertical={true}/>
       <MovieContainer movies={upcomingMovies} title="Upcoming" />
       <MovieContainer movies={discoverMovies} title="Discover" />

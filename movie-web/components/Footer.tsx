@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="max-w-4xl h-full mx-auto flex flex-col justify-around">
                 <Link href="/" className="flex items-center gap-2 mb-6 group">
                     <Image src="/tmovie-55621206.png" alt="Logo" width={40} height={40} />
-                    <h1 className="text-white font-semibold text-2xl md:text-4xl group-hover:text-red-main group-hover:transition-custom">theMovies</h1>
+                    <h1 className="text-white font-semibold text-2xl md:text-4xl transition-colors duration-200 group-hover:text-red-500">theMovies</h1>
                 </Link>
                 <div className="flex flex-wrap items-start justify-between gap-3 text-base font-semibold text-white md:text-xl">
                     <Link className="footer-item" href="/">Home</Link>

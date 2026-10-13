@@ -3,10 +3,12 @@ import React from 'react'
 
 import type { Movie } from "../../type.ts";
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
 import MovieCard from './MovieCard';
-import  useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, FreeMode } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
 
 type Props = {
     title?: string;
@@ -15,24 +17,34 @@ type Props = {
 }
 
 const MovieContainer = ({ title, movies }: Props) => {
-       const [emblaRef] = useEmblaCarousel({loop: false }, [Autoplay()])
-       const viewMoreHref = `/Movie?title=${encodeURIComponent(title ?? "")}`;
+    const viewMoreHref = `/Movie?title=${encodeURIComponent(title ?? "")}`;
+
     return (
-        <div>
-            <div className="mx-10 mb-4 flex items-center justify-between border-b border-b-gray-500 py-2">
+        <div className="mt-8 md:mt-16">
+            <div className="mx-10 mb-4 flex items-center justify-between px-2">
                 <h2 className="text-2xl uppercase font-bold tracking-wider text-white">{title}</h2>
-                <Link href={viewMoreHref}
-                    className="bg-gray-800 text-sm text-white uppercase px-2 py-1 rounded-md border-indigo-600 font-semibold ">
+                <Link
+                    href={viewMoreHref}
+                    className="btn-sm btn-default"
+                >
                     View More
                 </Link>
             </div>
-            <div ref={emblaRef} className={cn("flex space-x-4 overflow-scroll scrollbar-hide px-5 lg:px-10 py-5")}>
-                <div className= {cn("flex gap-4")}>
+
+            <Swiper
+                 modules={[Autoplay]}
+                                spaceBetween={14}
+                                slidesPerView={6}
+                                rewind
+                                autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                                className="my-swiper" 
+            >
                 {movies.map((movie) => (
-                    <MovieCard key={movie.id} movie={movie}/>
+                    <SwiperSlide key={movie.id} className="!w-auto">
+                        <MovieCard movie={movie} mode="carousel" />
+                    </SwiperSlide>
                 ))}
-                </div>
-            </div>
+            </Swiper>
         </div>
     )
 }

@@ -23,6 +23,11 @@ const config: Config = {
         extend: {
             colors: {
                 mainColor: "#121212",
+                "red-main": "#ef4444",
+            },
+            boxShadow: {
+                "btn": "0 10px 24px rgba(239, 68, 68, 0.45)",
+                "btn-hover": "0 16px 30px rgba(239, 68, 68, 0.6)",
             },
             keyframes: {
                 "accordion-down": {

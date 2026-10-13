@@ -194,3 +194,6 @@ export type Cast={
     order: number;
 }
 
+export type SearchInputProps={
+    searchPath?: string;
+}

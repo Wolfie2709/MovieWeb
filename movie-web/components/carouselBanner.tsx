@@ -13,7 +13,9 @@ const CarouselBanner = async ({id, keywords}: Props) => {
     const movies = await getDiscoverMovies(id, keywords);
 
   return (
+    <section id="hero-banner" className="...">
     <HeroCarousel movies={movies} />
+    </section>
   )
 }
 

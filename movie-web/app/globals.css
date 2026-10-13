@@ -120,11 +120,95 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
-  body {
-    @apply bg-background text-foreground;
-    }
+    box-sizing: border-box;
+  }
+
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white antialiased;
+    margin: 0;
+    font-family: var(--font-geist-sans), sans-serif;
+    background: #000;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+@keyframes heroContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.my-swiper {
+  cursor: grab;
+}
+
+.my-swiper .swiper-wrapper {
+  position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    transition-timing-function: var(--swiper-wrapper-transition-timing-function,initial);
+    box-sizing: content-box;
+}
+
+.my-swiper .swiper-wrapper:active {
+  cursor: grabbing;
+}
+
+.btn-sm {
+    transition-property: all;
+    transition-duration: .3s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    border-radius: 9999px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity))
+}
+
+@media (min-width: 768px) {
+    .btn-sm {
+        padding-left:1.5rem;
+        padding-right: 1.5rem;
+        font-size: 1.125rem;
+        line-height: 1.75rem
     }
+}
+
+.btn-primary {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 0 0 / var(--tw-bg-opacity));
+    --tw-shadow: 0 0 7px 8px rgba(255, 0, 0, .4);
+    --tw-shadow-colored: 0 0 7px 8px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)
+}
+
+.btn-primary:hover {
+    --tw-shadow: 0 0 12px 14px rgba(255, 0, 0, .4);
+    --tw-shadow-colored: 0 0 12px 14px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)
+}
+
+.btn-default {
+    border-width: 2px;
+    --tw-border-opacity: 1;
+    border-color: rgb(255 255 255 / var(--tw-border-opacity))
 }

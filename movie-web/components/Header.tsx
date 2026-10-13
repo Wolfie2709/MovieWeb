@@ -1,27 +1,90 @@
+"use client"
 import React from 'react'
-import Image from 'next/image';
 import Link from 'next/link';
-import SearchInput from './SearchInput';
+import {usePathname} from "next/navigation";
+import {useState, useEffect} from "react";
 
 const Header = () => {
+  const pathname = usePathname();
+const [isPastHero, setIsPastHero] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    const hero = document.getElementById("hero-banner");
+    if (!hero) return;
+
+    const heroBottom = hero.offsetTop + hero.offsetHeight;
+    setIsPastHero(window.scrollY > heroBottom - 120);
+  };
+
+  handleScroll();
+  window.addEventListener("scroll", handleScroll);
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+  const links = [
+    { name: "Home", href: "/" },
+    { name: "Movies", href: "/Movie" },
+    { name: "TV Series", href: "/TVSeries" },
+  ]
   return (
-    <header>
-    <div suppressHydrationWarning className='w-full sticky top-0 z-50 border-b border-white/10 bg-mainColor text-white backdrop-blur'>
-      <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3">
-        <Link href="/">
-          <Image src="/tmovie-55621206.png" alt="Logo" width={40} height={40} /> 
-          <span className='text-xl font-bold text-green-500 items-center p-2'>THE MOVIES</span>
+   <header
+  className={`sticky top-0 z-50 border-b border-white/10 transition-all duration-500 ease-in-out ${
+    isPastHero ?  "bg-black" : "bg-transparent"
+  }`}
+>
+      <div suppressHydrationWarning className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-4 py-4 md:px-8 lg:px-12">
+        <Link href="/" className="group flex items-center gap-3 text-white">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#7CCB5A] shadow-[0_0_22px_rgba(124,203,90,0.6)] md:h-12 md:w-12">
+            <span className="ml-1 h-0 w-0 border-y-[6px] border-l-[11px] border-y-transparent border-l-white md:border-y-[7px] md:border-l-[12px]" />
+          </span>
+          <span className="text-3xl font-semibold tracking-[-0.08em] text-white transition-colors duration-200 group-hover:text-red-500 md:text-5xl">
+            theMovies
+          </span>
         </Link>
-        <nav className="hidden items-center gap-6 text-sm uppercase md:flex">
-          <Link href="/"> Home </Link>
-          <Link href="/Movie"> Movies </Link>
-          <Link href="/TVSeries"> TV Series </Link>
-        </nav>
-        <div className= "w-full md:w-auto md:min-w-[280px] lg:min-w-[340px]">
-          <SearchInput />
-        </div>
+
+      <nav className="flex items-center gap-6 md:gap-10">
+      <Link
+        href="/"
+        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-2xl"
+      >
+        <span
+          className={`after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-red-500 after:transition-transform after:duration-200 after:content-[''] ${
+            pathname === "/" ? "after:scale-x-100 text-red-500 hover:after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 text-white/90"
+          }`}
+        >
+          Home
+        </span>
+      </Link>
+
+      <Link
+        href="/Movie"
+        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-2xl"
+      >
+        <span
+          className={`after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-red-500 after:transition-transform after:duration-200 after:content-[''] ${
+            pathname === "/Movie" ? "after:scale-x-100 text-red-500 hover:after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 text-white/90"
+          }`}
+        >
+          Movies
+        </span>
+      </Link>
+
+      <Link
+        href="/TVSeries"
+        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-2xl"
+      >
+        <span
+          className={`after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-red-500 after:transition-transform after:duration-200 after:content-[''] ${
+            pathname === "/TVSeries" ? "after:scale-x-100 text-red-500 hover:after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 text-white/90"
+          }`}
+        >
+          TV Series
+        </span>
+      </Link>
+    </nav>
       </div>
-    </div>
     </header>
   )
 }
