@@ -24,7 +24,7 @@ const MovieCard = ({ movie, mode = 'carousel' }: MovieCardProps) => {
             alt={movie.title}
             width={380}
             height={570}
-            className="relative w-full h-80 sm:h-[330px] xl:h-[380px] rounded-3xl bg-center bg-no-repeat bg-cover group/poster after:content-[&quot;&quot;] after:absolute after:top-0 after:right-0 after:bottom-0 after:left-0 after:rounded-3xl hover:after:bg-black/60 after:transition after:ease-in-out after:duration-300"
+            className="relative w-full h-72 2xl:h-80 rounded-3xl bg-center bg-no-repeat bg-cover group/poster after:content-[&quot;&quot;] after:absolute after:top-0 after:right-0 after:bottom-0 after:left-0 after:rounded-3xl hover:after:bg-black/60 after:transition after:ease-in-out after:duration-300"
           />
           <div className="pointer-events-none absolute inset-0 bg-black/0 transition duration-300 group-hover/container:bg-black/35" />
           <button

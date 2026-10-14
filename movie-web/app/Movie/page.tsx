@@ -23,7 +23,7 @@ const MoviePageHome = () => {
   const isSearchMode = searchQuery.length > 0;
   const categoryTitle = searchParams.get("title") ?? "Movies";
   const category = categoryNameMap[categoryTitle] ?? "now_playing";
-  const heading = isSearchMode ? `Search Results: ${searchQuery}` : categoryTitle;
+  const heading = "Movies";
 
   useEffect(() => {
     if (searchQuery) {
@@ -46,14 +46,12 @@ const MoviePageHome = () => {
       <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] to-[#050505] pb-8 pt-24 md:pt-28">
         <div className="mx-auto max-w-[1500px] px-4 md:px-8 lg:px-10">
           <div className="mb-6 text-center">
-            <h1 className="text-l font-black uppercase tracking-[-0.06em] text-white md:text-6xl">
+            <h1 className="text-l font-black font-semibold tracking-[-0.06em] text-white md:text-3xl">
               {heading}
             </h1>
           </div>
 
-          <div className="ml-0 w-full max-w-[680px]">
-            <SearchInput />
-          </div>
+
         </div>
       </div>
 
@@ -67,11 +65,15 @@ const MoviePageHome = () => {
             Failed to load movies: {error instanceof Error ? error.message : "Unknown error"}
           </p>
         )}
-
-        <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} mode="grid" />
-          ))}
+        <div>
+          <div className="ml-0 w-full max-w-[680px]">
+            <SearchInput />
+          </div>
+          <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {movies.map((movie) => (
+              <MovieCard key={movie.id} movie={movie} mode="grid" />
+            ))}
+          </div>
         </div>
       </div>
     </main>

@@ -26,14 +26,9 @@ const SimilarContainer = ({ title, items, mediaType }: Props) => {
 
   return (
     <div>
-      <div className="mx-10 mb-4 flex items-center justify-between border-b border-b-gray-500 py-2">
-        <h2 className="text-2xl uppercase font-bold tracking-wider text-white">{title}</h2>
-        <Link
-          href={viewMoreHref}
-          className="bg-gray-800 text-sm text-white uppercase px-2 py-1 rounded-md border-indigo-600 font-semibold"
-        >
-          View More
-        </Link>
+      <div className="mx-10 flex items-center justify-between py-2">
+        <h2 className="text-xl font-semibold tracking-wider text-white">{title}</h2>
+
       </div>
 
       <Swiper

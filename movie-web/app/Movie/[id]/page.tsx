@@ -56,12 +56,12 @@ const MovieDetailsPage = () => {
   });
 
   if (isDetailsLoading || isVideosLoading || isCreditsLoading) {
-    return <main className="min-h-screen bg-black px-5 py-10 text-white">Loading movie...</main>;
+    return <main className=" bg-black px-5 py-10 text-white">Loading movie...</main>;
   }
 
   if (isDetailsError || isVideosError || isCreditsError) {
     return (
-      <main className="min-h-screen bg-black px-5 py-10 text-red-400">
+      <main className=" bg-black px-5 py-10 text-red-400">
         Failed to load movie: {(detailsError || videosError || creditsError) instanceof Error ? (detailsError || videosError || creditsError)?.message : "Unknown error"}
       </main>
     );
@@ -75,7 +75,7 @@ const MovieDetailsPage = () => {
   const backdropImage = getImagePath(movieDetails?.backdrop_path || movieDetails?.poster_path, true);
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className=" bg-black text-white">
       <div className="w-full">
         <div
           style={{
@@ -86,18 +86,17 @@ const MovieDetailsPage = () => {
           }}
           className="pt-10 md:pt-20 "
         >
-          <div className="mx-auto w-full max-w-[1600px] px-0 md:px-2 md:py-2 lg:px-4 ">
-            <div className="mb-8 grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-start lg:pt-0 lg:pb-0 lg:pr-0 lg:pl-0">
-              <div className="overflow-hidden rounded-[22px] border border-white/10 bg-zinc-900 shadow-xl lg:h-[500px]">
+          <div className="relative px-4 md:px-5 lg:px-16 py-8 md:pt-20 md:pb-20 bg-center bg-no-repeat bg-cover z-0 before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-1/2 before:bg-black-main before:-z-10 after:content-[''] after:absolute after:top-0 after:left-0 after:right-0 after:h-1/2 after:bg-gradient-to-t after:from-black-main after:to-transparent after:-z-10 ">
+            <div className="mb-8 grid gap-3 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[320px_minmax(0,1fr)] md:items-start">
+              <div className="mx-auto w-48 overflow-hidden rounded-[22px] border border-white/10 bg-zinc-900 shadow-xl md:mx-0 md:w-full md:h-[360px] lg:h-[500px]">
                 <Image
                   src={getImagePath(movieDetails?.poster_path || movieDetails?.backdrop_path)}
                   alt={movieDetails?.title || "Movie poster"}
                   width={640}
                   height={960}
-                  className="h-full w-full object-cover "
+                  className="h-full w-full object-cover"
                 />
               </div>
-
               <div className="px-5 pb-10 pt-6 md:px-8 lg:px-8 lg:pt-10">
                 <h1 className="mb-3 text-3xl font-bold md:text-5xl">{movieDetails?.title}</h1>
 
@@ -109,7 +108,7 @@ const MovieDetailsPage = () => {
                   ))}
                 </div>
 
-                <p className="max-w-5xl text-gray-300 md:text-lg">{movieDetails?.overview}</p>
+                <p className="max-w-full text-gray-300 md:text-sm">{movieDetails?.overview}</p>
 
                 <h2 className="mb-4 mt-8 text-2xl font-bold tracking-wide">Casts</h2>
                 <div className="mb-2 flex flex-wrap gap-4">

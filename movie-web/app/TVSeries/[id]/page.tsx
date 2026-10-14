@@ -72,7 +72,7 @@ const TVDetailsPage = () => {
   const backdropImage = getImagePath(tvDetails?.backdrop_path || tvDetails?.poster_path, true);
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className=" bg-black text-white">
       <div className="w-full">
         <div
           style={{
@@ -83,9 +83,9 @@ const TVDetailsPage = () => {
           }}
           className="pt-10 md:pt-20"
         >
-          <div className="mx-auto w-full max-w-[1600px] px-0 md:px-2 md:py-2 lg:px-4">
-            <div className="mb-8 grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-start lg:pt-0 lg:pb-0 lg:pr-0 lg:pl-0">
-              <div className="overflow-hidden rounded-[22px] border border-white/10 bg-zinc-900 shadow-xl lg:h-[500px]">
+          <div className="relative px-4 md:px-5 lg:px-16 py-8 md:pt-20 md:pb-20 bg-center bg-no-repeat bg-cover z-0 before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-1/2 before:bg-black-main before:-z-10 after:content-[''] after:absolute after:top-0 after:left-0 after:right-0 after:h-1/2 after:bg-gradient-to-t after:from-black-main after:to-transparent after:-z-10">
+            <div className="mb-8 grid gap-3 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-start lg:pt-0 lg:pb-0 lg:pr-0 lg:pl-0">
+              <div className="mx-auto w-48 overflow-hidden rounded-[22px] border border-white/10 bg-zinc-900 shadow-xl md:mx-0 md:w-full md:h-[360px] lg:h-[500px]">
                 <Image
                   src={getImagePath(tvDetails?.poster_path || tvDetails?.backdrop_path)}
                   alt={tvDetails?.name || "TV series poster"}
@@ -106,7 +106,7 @@ const TVDetailsPage = () => {
                   ))}
                 </div>
 
-                <p className="max-w-5xl text-gray-300 md:text-lg">{tvDetails?.overview}</p>
+                <p className="max-w-full text-gray-300 md:text-sm">{tvDetails?.overview}</p>
 
                 <h2 className="mb-4 mt-8 text-2xl font-bold tracking-wide">Casts</h2>
                 <div className="mb-2 flex flex-wrap gap-4">
@@ -124,7 +124,7 @@ const TVDetailsPage = () => {
             <div className="gap-5">
               {featuredVideos.map((video) => (
                 <div key={video.id}>
-                  <p className="mb-2 py-3 text-3xl font-bold text-gray-300">{video.name}</p>
+                  <p className="mb-2 text-3xl font-bold text-gray-300">{video.name}</p>
                   <div className="aspect-video w-full overflow-hidden rounded-xl">
                     <iframe
                       title={video.name}

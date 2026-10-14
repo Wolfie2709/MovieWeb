@@ -42,10 +42,9 @@ const SearchInput = ({searchPath}: SearchInputProps) => {
   return (
     <form
       role="search"
-      className="flex items-center overflow-hidden rounded-full border border-white/10 bg-black/80 shadow-[0_0_30px_rgba(0,0,0,0.4)]"
+      className="flex items-center overflow-hidden rounded-full  bg-black shadow-[0_0_30px_rgba(0,0,0,0.4)] w-full md:w-fit lg:w-fit"
       onSubmit={form.handleSubmit(onSubmit)}
     >
-      <Field orientation="horizontal" className="w-full items-center gap-2">
         <FieldLabel htmlFor="movie-search" className="sr-only">
           Search movies
         </FieldLabel>
@@ -55,7 +54,9 @@ const SearchInput = ({searchPath}: SearchInputProps) => {
             name="q"
             type="search"
             placeholder="Enter keyword"
-            className="w-full border-0 bg-transparent px-4 py-3 text-base text-white placeholder:text-gray-400 focus-visible:ring-0 md:text-base"
+            className="rounded-full border-0 bg-transparent px-6 py-2 text-white shadow-none
+             focus-visible:ring-0 focus-visible:border-0 dark:bg-transparent
+             flex-1 md:flex-auto md:w-96"
             {...form.register("q", {
               onChange: (event) => {
                 setKeyword(event.target.value);
@@ -71,7 +72,6 @@ const SearchInput = ({searchPath}: SearchInputProps) => {
         >
           Search
         </Button>
-      </Field>
     </form>
   )
 }

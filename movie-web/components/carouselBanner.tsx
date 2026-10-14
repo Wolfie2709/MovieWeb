@@ -13,7 +13,7 @@ const CarouselBanner = async ({id, keywords}: Props) => {
     const movies = await getDiscoverMovies(id, keywords);
 
   return (
-    <section id="hero-banner" className="min-h-screen bg-background text-foreground">
+    <section id="hero-banner" className="bg-background text-foreground">
     <HeroCarousel movies={movies} />
     </section>
   )

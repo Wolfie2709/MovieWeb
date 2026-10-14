@@ -32,7 +32,7 @@ const Header = () => {
           <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#7CCB5A] shadow-[0_0_22px_rgba(124,203,90,0.6)] md:h-12 md:w-12">
             <span className="ml-1 h-0 w-0 border-y-[6px] border-l-[11px] border-y-transparent border-l-white md:border-y-[7px] md:border-l-[12px]" />
           </span>
-          <span className="text-3xl font-semibold tracking-[-0.08em] text-white transition-colors duration-200 group-hover:text-red-500 md:text-5xl">
+          <span className="text-xl font-semibold tracking-[-0.08em] text-white transition-colors duration-200 group-hover:text-red-500 md:text-4xl">
             theMovies
           </span>
         </Link>
@@ -40,11 +40,11 @@ const Header = () => {
       <nav className="flex items-center gap-6 md:gap-10">
       <Link
         href="/"
-        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-2xl"
+        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-xl"
       >
         <span
           className={`after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-red-500 after:transition-transform after:duration-200 after:content-[''] ${
-            pathname === "/" ? "after:scale-x-100 text-red-500 hover:after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 text-white/90"
+            pathname === "/" ? "after:scale-x-100 hover:after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 text-white/90"
           }`}
         >
           Home
@@ -53,11 +53,11 @@ const Header = () => {
 
       <Link
         href="/Movie"
-        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-2xl"
+        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-xl"
       >
         <span
           className={`after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-red-500 after:transition-transform after:duration-200 after:content-[''] ${
-            pathname === "/Movie" ? "after:scale-x-100 text-red-500 hover:after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 text-white/90"
+            pathname === "/Movie" ? "after:scale-x-100  hover:after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 text-white/90"
           }`}
         >
           Movies
@@ -66,11 +66,11 @@ const Header = () => {
 
       <Link
         href="/TVSeries"
-        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-2xl"
+        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-xl"
       >
         <span
           className={`after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-red-500 after:transition-transform after:duration-200 after:content-[''] ${
-            pathname === "/TVSeries" ? "after:scale-x-100 text-red-500 hover:after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 text-white/90"
+            pathname === "/TVSeries" ? "after:scale-x-100  hover:after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100 text-white/90"
           }`}
         >
           TV Series

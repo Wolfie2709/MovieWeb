@@ -19,14 +19,14 @@ const HeroCarousel = ({ movies }: Props) => {
   if (!movies?.length) return null;
 
   return (
-    <section className="relative isolate h-screen overflow-hidden min-h-screen bg-background text-foreground">
+    <section className="relative isolate overflow-hidden bg-background text-foreground ">
       <Swiper
         modules={[Autoplay]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop
         speed={700}
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-        className="h-screen"
+        className="h-[25rem] md:h-[36rem] lg:h-[52rem]"
       >
         {movies.map((movie, index) => {
           const bgImage = getImagePath(movie.backdrop_path || movie.poster_path, true);
@@ -49,12 +49,12 @@ const HeroCarousel = ({ movies }: Props) => {
                 <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-8 px-6 pb-10 pt-16 md:px-10 md:pb-16 md:pt-20 xl:px-12">
                   <div
                     className="max-w-[980px] -translate-y-4"
-                  > <h2 className={`mb-5 text-6xl font-black leading-[0.9] tracking-[-0.08em] ${
+                  > <h2 className={`mb-5 text-6xl font-black leading-[0.9] tracking-[-0.08em] font-semibold ${
                       isActive ? "animate-in slide-in-from-top duration-700 delay-100 ease-out text-white drop-shadow-[0_12px_30px_rgba(0,0,0,0.8)]" : "opacity-0"}`}>
                       {movie.title}
                     </h2>
 
-                    <p className={`max-w-[920px] text-xs leading-relaxed text-white/90 md:text-xl my-12 xl:text-[1.9rem] xl:leading-[1.2] line-clamp-2 font-medium ${
+                    <p className={`max-w-[920px] text-xl leading-relaxed text-white/90 md:text-l my-12 xl:text-[1.9rem] xl:leading-[1.2] font-medium ${
                       isActive ? "animate-in slide-in-from-top duration-700 delay-[600ms] ease-out" : "opacity-0"}`}>
                       {movie.overview}
                     </p>
