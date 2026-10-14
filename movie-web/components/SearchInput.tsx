@@ -42,7 +42,7 @@ const SearchInput = ({searchPath}: SearchInputProps) => {
   return (
     <form
       role="search"
-      className="flex items-center overflow-hidden rounded-full  bg-black shadow-[0_0_30px_rgba(0,0,0,0.4)] w-full md:w-fit lg:w-fit"
+      className="flex items-center relative rounded-full bg-black w-full md:w-fit lg:w-fit"
       onSubmit={form.handleSubmit(onSubmit)}
     >
         <FieldLabel htmlFor="movie-search" className="sr-only">
@@ -54,9 +54,9 @@ const SearchInput = ({searchPath}: SearchInputProps) => {
             name="q"
             type="search"
             placeholder="Enter keyword"
-            className="rounded-full border-0 bg-transparent px-6 py-2 text-white shadow-none
+            className="h-10 rounded-full border-0 bg-transparent px-6 text-base text-white shadow-none
              focus-visible:ring-0 focus-visible:border-0 dark:bg-transparent
-             flex-1 md:flex-auto md:w-96"
+             flex-1 md:flex-auto md:w-96 md:text-lg"
             {...form.register("q", {
               onChange: (event) => {
                 setKeyword(event.target.value);
@@ -68,7 +68,7 @@ const SearchInput = ({searchPath}: SearchInputProps) => {
         <Button
           type="submit"
           aria-label="Search"
-          className="h-[44px] rounded-full bg-red-600 px-5 text-sm font-semibold text-white shadow-[0_0_20px_rgba(239,68,68,0.6)] transition-colors duration-200 hover:bg-red-500 md:px-6 md:text-base"
+          className="btn-sm btn-primary py-1 h-9"
         >
           Search
         </Button>

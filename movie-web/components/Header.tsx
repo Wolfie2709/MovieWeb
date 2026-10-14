@@ -27,20 +27,20 @@ const Header = () => {
     isAtTop ? "bg-transparent" : " backdrop-blur-xl bg-black/85"
   }`}
 >
-      <div suppressHydrationWarning className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-4 py-4 md:px-8 lg:px-12">
-        <Link href="/" className="group flex items-center gap-3 text-white">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#7CCB5A] shadow-[0_0_22px_rgba(124,203,90,0.6)] md:h-12 md:w-12">
-            <span className="ml-1 h-0 w-0 border-y-[6px] border-l-[11px] border-y-transparent border-l-white md:border-y-[7px] md:border-l-[12px]" />
-          </span>
-          <span className="text-xl font-semibold tracking-[-0.08em] text-white transition-colors duration-200 group-hover:text-red-500 md:text-4xl">
-            theMovies
-          </span>
-        </Link>
+      <div suppressHydrationWarning className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-4 py-8 md:px-8 lg:px-12">
+<Link href="/" className="group flex items-center text-white">
+  <span className="mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#7CCB5A] shadow-[0_0_22px_rgba(124,203,90,0.6)] md:h-12 md:w-12">
+    <span className="ml-1 h-0 w-0 border-y-[6px] border-l-[11px] border-y-transparent border-l-white md:border-y-[7px] md:border-l-[12px]" />
+  </span>
+  <span className="text-2xl font-semibold text-white transition-colors duration-200 group-hover:text-red-500 md:text-4xl">
+    theMovies
+  </span>
+</Link>
 
       <nav className="flex items-center gap-6 md:gap-10">
       <Link
         href="/"
-        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-xl"
+        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-2xl"
       >
         <span
           className={`after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-red-500 after:transition-transform after:duration-200 after:content-[''] ${
@@ -53,7 +53,7 @@ const Header = () => {
 
       <Link
         href="/Movie"
-        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-xl"
+        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-2xl"
       >
         <span
           className={`after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-red-500 after:transition-transform after:duration-200 after:content-[''] ${
@@ -66,7 +66,7 @@ const Header = () => {
 
       <Link
         href="/TVSeries"
-        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-xl"
+        className="relative text-lg font-semibold transition-colors duration-200 hover:text-red-500 md:text-2xl"
       >
         <span
           className={`after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-full after:rounded-full after:bg-red-500 after:transition-transform after:duration-200 after:content-[''] ${

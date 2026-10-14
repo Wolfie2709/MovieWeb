@@ -21,7 +21,7 @@ const TVSeriesPageHome = () => {
   const setKeywords = useSearchStore((state) => state.setKeyword);
   const searchQuery = searchParams.get("query")?.trim() ?? "";
   const isSearchMode = searchQuery.length > 0;
-  const categoryTitle = searchParams.get("title") ?? "TV Series";
+  const categoryTitle = searchParams.get("title") ?? "Tv Series";
   const category = categoryNameMap[categoryTitle] ?? "popular";
   const heading = isSearchMode ? `Search Results: ${searchQuery}` : categoryTitle;
 
@@ -42,11 +42,11 @@ const TVSeriesPageHome = () => {
   });
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white">
+    <main className="min-h-screen bg-gray-950 text-white">
       <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] to-[#050505] pb-8 pt-24 md:pt-28">
         <div className="mx-auto max-w-[1500px] px-4 md:px-8 lg:px-10">
-          <div className="mb-6 text-center">
-            <h1 className="text-l font-black uppercase tracking-[-0.06em] text-white md:text-3xl">
+          <div className="mb-3 text-center">
+            <h1 className="text-l font-semibold  text-white md:text-4xl">
               {heading}
             </h1>
           </div>
@@ -64,7 +64,7 @@ const TVSeriesPageHome = () => {
           </p>
         )}
         <div>
-          <div className="ml-0 w-full max-w-[680px]">
+          <div className="flex items-center relative rounded-full bg-black w-full md:w-fit lg:w-fit mb-6">
             <SearchInput />
           </div>
           <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">

@@ -74,17 +74,16 @@ const TVDetailsPage = () => {
   return (
     <main className=" bg-black text-white">
       <div className="w-full">
-        <div
-          style={{
-            backgroundImage: `linear-gradient(60deg, rgba(4,6,10,0.92) 0%, rgba(4,6,10,0.82) 22%, rgba(4,6,10,0.72) 52%, rgba(4,6,10,0.96) 100%), url(${backdropImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center top",
-            backgroundAttachment: "fixed",
-          }}
-          className="pt-10 md:pt-20"
-        >
-          <div className="relative px-4 md:px-5 lg:px-16 py-8 md:pt-20 md:pb-20 bg-center bg-no-repeat bg-cover z-0 before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-1/2 before:bg-black-main before:-z-10 after:content-[''] after:absolute after:top-0 after:left-0 after:right-0 after:h-1/2 after:bg-gradient-to-t after:from-black-main after:to-transparent after:-z-10">
-            <div className="mb-8 grid gap-3 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-start lg:pt-0 lg:pb-0 lg:pr-0 lg:pl-0">
+       <div
+  style={{
+    backgroundImage:`linear-gradient(to top, rgba(4,6,10,0.92) 100%, rgba(4,6,10,0.72) 100%, rgba(4,6,10,0.96) 100%), url(${backdropImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center top",
+  }}
+  className="pt-10 md:pt-20"
+>
+          <div className="relative px-4 md:px-5 lg:px-20 py-7 md:pt-8 md:py bg-center bg-no-repeat bg-cover z-0 before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-1/2 before:bg-black-main before:-z-10 after:content-[''] after:absolute after:top-0 after:left-0 after:right-0 after:h-1/2 after:bg-gradient-to-t after:from-black-main after:to-transparent after:-z-10 ">
+            <div className="mb-0 grid gap-0 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[320px_minmax(0,1fr)] md:items-start">
               <div className="mx-auto w-48 overflow-hidden rounded-[22px] border border-white/10 bg-zinc-900 shadow-xl md:mx-0 md:w-full md:h-[360px] lg:h-[500px]">
                 <Image
                   src={getImagePath(tvDetails?.poster_path || tvDetails?.backdrop_path)}
