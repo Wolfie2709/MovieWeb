@@ -21,7 +21,7 @@ const MovieContainer = ({ title, movies }: Props) => {
 
     return (
         <div className="mt-8 md:mt-16">
-            <div className="mx-10 flex items-center justify-between px-2">
+            <div className="mx-10  flex items-center justify-between px-2">
                 <h2 className="text-2xl uppercase font-bold tracking-wider text-white">{title}</h2>
                 <Link
                     href={viewMoreHref}
@@ -34,13 +34,17 @@ const MovieContainer = ({ title, movies }: Props) => {
             <Swiper
                  modules={[Autoplay]}
                                 spaceBetween={14}
-                                slidesPerView={6}
+                                 slidesPerView={2}
+    breakpoints={{
+      640:  { slidesPerView: 4 },
+      1024: { slidesPerView: 6 },
+    }}
                                 rewind
                                 autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
                                 className="my-swiper mt-8" 
             >
                 {movies.map((movie) => (
-                    <SwiperSlide key={movie.id} className="!w-auto">
+                    <SwiperSlide key={movie.id}>
                         <MovieCard movie={movie} mode="carousel" />
                     </SwiperSlide>
                 ))}
