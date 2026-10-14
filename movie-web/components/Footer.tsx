@@ -18,7 +18,7 @@ const footerLinks = [
 const Footer = () => {
   return (
     <footer
-      className="relative overflow-hidden border-t border-white/10 bg-black"
+      className="relative overflow-hidden border-t border-white/10 bg-black h-100 lg:h-120 px-8 py-12 md:p-16"
       style={{
         backgroundImage: " url('/footer-bg-e4b3ddb4.jpg')",
         backgroundSize: 'cover',
@@ -37,13 +37,13 @@ const Footer = () => {
           </Link>
         </div>
 
-        <div className="grid gap-4 text-center text-lg font-black uppercase tracking-[-0.05em] text-white/90 sm:grid-cols-2 md:grid-cols-3 xl:text-2xl">
-          <div className="contents">
+        <div className="flex text-white font-semibold text-base md:text-2xl items-start justify-between flex-wrap -mx-2">
+          <div className="contents ">
             {footerLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="transition-all duration-200 hover:text-red-500"
+                className="transition-all duration-200 hover:text-red-500 w-1/2 sm:w-1/3 px-2 py-1"
               >
                 {link.label}
               </Link>
