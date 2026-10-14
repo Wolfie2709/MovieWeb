@@ -20,7 +20,7 @@ const MovieContainer = ({ title, movies }: Props) => {
     const viewMoreHref = `/Movie?title=${encodeURIComponent(title ?? "")}`;
 
     return (
-        <div className="mt-8 md:mt-16">
+        <div className="mt-8 md:mt-16 mx-auto w-full px-3 md:px-4">
             <div className="mx-10  flex items-center justify-between px-2">
                 <h2 className="text-2xl uppercase font-bold tracking-wider text-white">{title}</h2>
                 <Link

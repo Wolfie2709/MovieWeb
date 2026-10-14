@@ -19,7 +19,7 @@ const TVContainer = ({ title, tv }: Props) => {
     const viewMoreHref = `/TVSeries?title=${encodeURIComponent(title ?? "")}`;
 
     return (
-       <div className="mt-8 md:mt-16 mx-auto w-full max-w-[1600px] px-6 md:px-10">
+       <div className="mt-8 md:mt-16 mx-auto w-full px-3 md:px-4">
   <div className="mb-4 flex items-center justify-between">
     <h2 className="text-2xl uppercase font-bold tracking-wider text-white">{title}</h2>
     <Link href={viewMoreHref} className="btn-sm btn-default">View More</Link>
