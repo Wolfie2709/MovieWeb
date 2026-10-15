@@ -1,5 +1,4 @@
 import type { TV, TVDetails, TVSearchResults, Videos, SearchResults } from "../../type";
-const TMDB_BASE = "https://api.themoviedb.org/3";
 
 const emptyPage = { page: 1, results: [], total_pages: 1, total_results: 0 };
 
@@ -8,7 +7,7 @@ const getTVSeriesPage = async (
   page = 1,
   extra: Record<string, string> = {}
 ) => {
-  const url = new URL(`${TMDB_BASE}/${path}`);
+  const url = new URL(`https://api.themoviedb.org/3/${path}?api_key=4f85134e0e3de33d9af45eb9596b5735`);
   url.searchParams.set("api_key", process.env.TMDB_API_KEY ?? "");
   url.searchParams.set("page", String(page));
   Object.entries(extra).forEach(([key, value]) => url.searchParams.set(key, value));
