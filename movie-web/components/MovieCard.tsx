@@ -17,7 +17,7 @@ const MovieCard = ({ movie, mode = 'carousel' }: MovieCardProps) => {
 
   return (
     <div className={containerClass}>
-      <Link href={`/Movie/${movie.id}`} className="group/container block cursor-pointer">
+      <Link href={`/Movie/${movie.id}`} className="group/container block cursor-pointer mr-2">
         <div className="group/poster relative overflow-hidden rounded-3xl z-10">
           <Image
             src={getImagePath(movie?.poster_path || movie?.backdrop_path)}

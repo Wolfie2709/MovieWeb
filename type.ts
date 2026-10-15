@@ -197,3 +197,16 @@ export type Cast={
 export type SearchInputProps={
     searchPath?: string;
 }
+
+
+export type MoviesPage = {
+  results: Movie[];
+  page: number;
+  totalPages: number;
+};
+
+export type TVSeriesPage = {
+  results: TV[];
+  page: number;
+  totalPages: number;
+};

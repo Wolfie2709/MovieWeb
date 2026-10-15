@@ -1,7 +1,9 @@
-import type { Movie, MovieDetails, VideoProps, Credits } from "../../../type";
+import type { Movie, MovieDetails, VideoProps, Credits, MoviesPage } from "../../../type";
 
 type MoviesResponse = {
   results: Movie[];
+    page?: number;
+  total_pages?: number;
   error?: string;
 };
 
@@ -15,7 +17,7 @@ type SimilarMoviesResponse = {
   error?: string;
 };
 
-const fetchMovies = async (params: URLSearchParams): Promise<Movie[]> => {
+const fetchMovies = async (params: URLSearchParams): Promise<MoviesPage> => {
   const response = await fetch(`/api/movies?${params.toString()}`, {
     cache: "no-store",
   });
@@ -25,16 +27,20 @@ const fetchMovies = async (params: URLSearchParams): Promise<Movie[]> => {
   }
 
   const data = (await response.json()) as MoviesResponse;
-  return data.results ?? [];
+  return {
+    results: data.results ?? [],
+    page: data.page ?? 1,
+    totalPages: data.total_pages ?? 1,
+  };
 };
 
-export const getMoviesByCategory = async (category: string): Promise<Movie[]> => {
-  const params = new URLSearchParams({ category });
+export const getMoviesByCategory = async (category: string, page=1): Promise<MoviesPage> => {
+  const params = new URLSearchParams({ category, page: page.toString() });
   return fetchMovies(params);
 };
 
-export const searchMovies = async (query: string): Promise<Movie[]> => {
-  const params = new URLSearchParams({ query });
+export const searchMovies = async (query: string, page=1): Promise<MoviesPage> => {
+  const params = new URLSearchParams({ query, page: page.toString() });
   return fetchMovies(params);
 };
 

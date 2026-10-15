@@ -1,4 +1,22 @@
 import type { MovieDetails, SearchResults, Videos } from "../../type";
+const TMDB_BASE = "https://api.themoviedb.org/3";
+
+const emptyPage = { page: 1, results: [], total_pages: 1, total_results: 0 };
+
+const getMoviesPage = async (
+  path: string,
+  page = 1,
+  extra: Record<string, string> = {}
+) => {
+  const url = new URL(`${TMDB_BASE}/${path}`);
+  url.searchParams.set("api_key", process.env.TMDB_API_KEY ?? "");
+  url.searchParams.set("page", String(page));
+  Object.entries(extra).forEach(([key, value]) => url.searchParams.set(key, value));
+
+  const data = await fetcher<SearchResults>(url);
+  return data ?? emptyPage;
+};
+
 
 const fetcher = async <T>(url: URL, cacheTime?: number): Promise<T | null> => {
     try {
@@ -88,3 +106,11 @@ export const getSimilarMovies = async(id?:string) => {
     const data = await fetcher(url);
     return data ?? null;
 }
+
+export const getNowPlayingMoviesPage = (page = 1) => getMoviesPage("movie/now_playing", page);
+export const getUpcomingMoviesPage = (page = 1) => getMoviesPage("movie/upcoming", page);
+export const getPopularMoviesPage = (page = 1) => getMoviesPage("movie/popular", page);
+export const getTopRatedMoviesPage = (page = 1) => getMoviesPage("movie/top_rated", page);
+export const getDiscoverMoviesPage = (page = 1) => getMoviesPage("discover/movie", page);
+export const getSearchedMoviesPage = (query: string, page = 1) =>
+  getMoviesPage("search/movie", page, { query });

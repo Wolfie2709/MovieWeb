@@ -3,6 +3,7 @@ import React from 'react'
 import Link from 'next/link';
 import {usePathname} from "next/navigation";
 import {useState, useEffect} from "react";
+import Image from "next/image";
 
 const Header = () => {
   const pathname = usePathname();
@@ -29,10 +30,8 @@ const Header = () => {
 >
       <div suppressHydrationWarning className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-4 py-8 md:px-8 lg:px-12">
 <Link href="/" className="group flex items-center text-white">
-  <span className="mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#7CCB5A] shadow-[0_0_22px_rgba(124,203,90,0.6)] md:h-12 md:w-12">
-    <span className="ml-1 h-0 w-0 border-y-[6px] border-l-[11px] border-y-transparent border-l-white md:border-y-[7px] md:border-l-[12px]" />
-  </span>
-  <span className="text-2xl font-semibold text-white transition-colors duration-200 group-hover:text-red-500 md:text-4xl">
+  <Image src="/tmovie-55621206.png" alt="theMovies Logo" width={45} height={45} />
+  <span className="text-2xl font-semibold text-white transition-colors duration-200 group-hover:text-red-500 md:text-4xl md:ml-3">
     theMovies
   </span>
 </Link>

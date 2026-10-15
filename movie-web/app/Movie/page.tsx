@@ -1,8 +1,8 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useMemo } from "react";
 import { useSearchStore } from "@/lib/store/searchStore";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import MovieCard from '@/components/MovieCard';
 import { getMoviesByCategory, searchMovies } from "@/lib/client/movieApi";
@@ -32,18 +32,29 @@ const MoviePageHome = () => {
   }, [searchQuery, setKeywords]);
 
   const {
-    data: movies = [],
+    data,
     isLoading,
     isError,
     error,
-  } = useQuery({
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
     queryKey: isSearchMode ? ["movies", "search", searchQuery] : ["movies", "category", category],
-    queryFn: () => (isSearchMode ? searchMovies(searchQuery) : getMoviesByCategory(category)),
+    queryFn: ({ pageParam }) =>
+      isSearchMode ? searchMovies(searchQuery, pageParam) : getMoviesByCategory(category, pageParam),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
   });
+  const movies = useMemo(() => {
+    const all = data?.pages.flatMap((page) => page.results) ?? [];
+    return Array.from(new Map(all.map((m) => [m.id, m])).values());
+  }, [data]);
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white">
-      <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] to-[#050505] pb-8 pt-24 md:pt-28">
+    <main className="min-h-screen bg-[#050505]/80 text-white">
+      <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] to-[#050505]/80 pb-8 pt-24 md:pt-28">
         <div className="mx-auto max-w-[1500px] px-4 md:px-8 lg:px-10">
           <div className="mb-6 text-center">
             <h1 className="text-xl font-black font-semibold text-white md:text-4xl">
@@ -55,7 +66,7 @@ const MoviePageHome = () => {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1500px] px-4 pb-16 pt-8 md:px-8 lg:px-10">
+      <div className="mx-auto max-w-[1500px] px-4 pb-16 pt-4 md:px-8 lg:px-10">
         {isLoading && (
           <p className="py-8 text-gray-300">Loading movies...</p>
         )}
@@ -66,7 +77,7 @@ const MoviePageHome = () => {
           </p>
         )}
         <div>
-          <div className="flex items-center relative rounded-full bg-black w-full md:w-fit lg:w-fit">
+          <div className="flex items-center relative rounded-full bg-black w-full md:w-fit lg:w-fit mb-16">
             <SearchInput />
           </div>
           <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
@@ -74,6 +85,17 @@ const MoviePageHome = () => {
               <MovieCard key={movie.id} movie={movie} mode="grid" />
             ))}
           </div>
+          {hasNextPage && (
+            <div className="mt-12 flex justify-center">
+              <button
+                onClick={() => fetchNextPage()}
+                disabled={isFetchingNextPage}
+                className="btn-sm btn-default"
+              >
+                {isFetchingNextPage ? "Loading..." : "Watch more"}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </main>

@@ -1,7 +1,7 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { Suspense, useEffect, useMemo } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import TVCard from '@/components/TVCard';
 import { getTVByCategory, searchTVSeries } from "@/lib/client/tvApi";
@@ -32,14 +32,26 @@ const TVSeriesPageHome = () => {
   }, [searchQuery, setKeywords]);
 
   const {
-    data: tvSeries = [],
+    data,
     isLoading,
     isError,
     error,
-  } = useQuery({
-    queryKey: isSearchMode ? ["tv", "search", searchQuery] : ["tv", "category", category],
-    queryFn: () => (isSearchMode ? searchTVSeries(searchQuery) : getTVByCategory(category)),
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+   queryKey: isSearchMode ? ["tv", "search", searchQuery] : ["tv", "category", category],
+       queryFn: ({ pageParam }) =>
+         isSearchMode ? searchTVSeries(searchQuery, pageParam) : getTVByCategory(category, pageParam),
+       initialPageParam: 1,
+       getNextPageParam: (lastPage) =>
+         lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
   });
+    const tvSeries = useMemo(() => {
+      const all = data?.pages.flatMap((page) => page.results) ?? [];
+      return Array.from(new Map(all.map((tv) => [tv.id, tv])).values());
+    }, [data]);
+  
 
   return (
     <main className="min-h-screen bg-gray-950 text-white">
@@ -72,6 +84,17 @@ const TVSeriesPageHome = () => {
               <TVCard key={tv.id} tv={tv} mode="grid" />
             ))}
           </div>
+            {hasNextPage && (
+            <div className="mt-12 flex justify-center">
+              <button
+                onClick={() => fetchNextPage()}
+                disabled={isFetchingNextPage}
+                className="btn-sm btn-default"
+              >
+                {isFetchingNextPage ? "Loading..." : "Watch more"}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </main>

@@ -1,4 +1,22 @@
-import type { TV, TVDetails, TVSearchResults, Videos } from "../../type";
+import type { TV, TVDetails, TVSearchResults, Videos, SearchResults } from "../../type";
+const TMDB_BASE = "https://api.themoviedb.org/3";
+
+const emptyPage = { page: 1, results: [], total_pages: 1, total_results: 0 };
+
+const getTVSeriesPage = async (
+  path: string,
+  page = 1,
+  extra: Record<string, string> = {}
+) => {
+  const url = new URL(`${TMDB_BASE}/${path}`);
+  url.searchParams.set("api_key", process.env.TMDB_API_KEY ?? "");
+  url.searchParams.set("page", String(page));
+  Object.entries(extra).forEach(([key, value]) => url.searchParams.set(key, value));
+
+  const data = await fetcher<SearchResults>(url);
+  return data ?? emptyPage;
+};
+
 
 const fetcher = async <T>(url: URL, cacheTime?: number): Promise<T | null> => {
     try {
@@ -83,3 +101,11 @@ export const getTVSeriesCredits = async(id?: string) =>{
     return data ?? null;
 };
 
+
+export const getAiringTVPage = (page = 1) => getTVSeriesPage("tv/airing_today", page);
+export const getOnTheAirTVPage = (page = 1) => getTVSeriesPage("tv/on_the_air", page);
+export const getPopularTVPage = (page = 1) => getTVSeriesPage("tv/popular", page);
+export const getTopRatedTVPage = (page = 1) => getTVSeriesPage("tv/top_rated", page);
+export const getDiscoverTVPage = (page = 1) => getTVSeriesPage("discover/tv", page);
+export const getSearchedTVPage = (query: string, page = 1) =>
+  getTVSeriesPage("search/tv", page, { query });

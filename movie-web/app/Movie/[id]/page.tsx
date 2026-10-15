@@ -79,16 +79,16 @@ const MovieDetailsPage = () => {
       <div className="w-full">
         <div
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(4,6,10,0.92) 0%, rgba(4,6,10,0.82) 22%, rgba(4,6,10,0.72) 52%, rgba(4,6,10,0.96) 100%), url(${backdropImage})`,
+            backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0) 2%, rgba(10,10,10,1) 40%, rgba(10,10,10,1) 100%), url(${backdropImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center top",
             backgroundAttachment: "fixed",
           }}
-          className="pt-10 md:pt-20 "
+          className="pt-8 md:pt-16 "
         >
-          <div className="relative px-4 md:px-5 lg:px-16 py-8 md:pt-20 md:pb-20 bg-center bg-no-repeat bg-cover z-0 before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-1/2 before:bg-black-main before:-z-10 after:content-[''] after:absolute after:top-0 after:left-0 after:right-0 after:h-1/2 after:bg-gradient-to-t after:from-black-main after:to-transparent after:-z-10 ">
-            <div className="mb-8 grid gap-3 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[320px_minmax(0,1fr)] md:items-start">
-              <div className="mx-auto w-48 overflow-hidden rounded-[22px] border border-white/10 bg-zinc-900 shadow-xl md:mx-0 md:w-full md:h-[360px] lg:h-[500px]">
+          <div className="relative flex px-4 md:px-5 lg:px-16 py-8 md:pb-18 md:pt-16 bg-center bg-no-repeat bg-cover z-0 before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-1/2 before:bg-black-main before:-z-10 after:content-[''] after:absolute after:top-0 after:left-0 after:right-0 after:h-1/2 after:bg-gradient-to-t after:from-black-main after:to-transparent after:-z-10 ">
+            <div className="flex grid gap-0 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[320px_minmax(0,1fr)] md:items-start">
+              <div className="mx-auto w-48 overflow-hidden rounded-[22px] border border-white/10 bg-zinc-900 shadow-xl md:mx-0 md:w-full md:h-[360px] lg:h-[500px] md:px-1">
                 <Image
                   src={getImagePath(movieDetails?.poster_path || movieDetails?.backdrop_path)}
                   alt={movieDetails?.title || "Movie poster"}
@@ -97,21 +97,21 @@ const MovieDetailsPage = () => {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="px-5 pb-10 pt-6 md:px-8 lg:px-8 lg:pt-10">
-                <h1 className="mb-3 text-3xl font-bold md:text-5xl">{movieDetails?.title}</h1>
+              <div className="px-4 pb-0 lg:pt-0">
+                <h1 className="mb-2 text-2xl font-bold md:text-5xl">{movieDetails?.title}</h1>
 
-                <div className="mb-4 flex flex-wrap gap-2">
+                <div className="py-4 flex flex-wrap gap-2 px-1 mb-4">
                   {movieDetails?.genres?.map((genre) => (
-                    <span key={genre.id} className="rounded-full border border-white/20 px-3 py-1 text-xs text-gray-200">
+                    <span key={genre.id} className="bg-black-main px-4 py-1 border-2 border-white rounded-full text-white text-xs lg:text-sm">
                       {genre.name}
                     </span>
                   ))}
                 </div>
 
-                <p className="max-w-full text-gray-300 md:text-sm">{movieDetails?.overview}</p>
+                <p className="max-w-full flex text-white md:text-sm">{movieDetails?.overview}</p>
 
-                <h2 className="mb-4 mt-8 text-2xl font-bold tracking-wide">Casts</h2>
-                <div className="mb-2 flex flex-wrap gap-4">
+                <h2 className="mb-1 mt-4 text-xl font-bold tracking-wide">Casts</h2>
+                <div className="mb-0 flex flex-wrap gap-3">
                   {movieCredits?.cast?.slice(0, 5).map((cast) => (
                     <CastCard key={cast.id} cast={cast} />
                   ))}
@@ -125,7 +125,7 @@ const MovieDetailsPage = () => {
             <div className="gap-5 ">
               {featuredVideos.map((video) => (
                 <div key={video.id}>
-                  <p className="mb-2 text-3xl font-bold text-gray-300 py-3">{video.name}</p>
+                  <p className="mb-2 text-2xl font-bold text-white py-3">{video.name}</p>
                   <div className="aspect-video w-full overflow-hidden rounded-xl">
                     <iframe
                       title={video.name}

@@ -65,11 +65,11 @@ const HeroCarousel = ({ movies }: Props) => {
                     </p>
 
                     <div
-                      className={`mt-6 flex flex-wrap items-center gap-4 md:gap-1 ${reveal} group-[.swiper-slide-active]:delay-[900ms]`}
+                      className={`flex flex-wrap items-center gap-4 md:gap-1 text-white opacity-0 -translate-y-24 ${reveal} group-[.swiper-slide-active]:delay-[900ms]`}
                     >
                       <Link
                         href={`/Movie/${movie.id}`}
-                        className="btn-lg btn-primary mr-4 " 
+                        className="btn-lg btn-primary mr-4 height-[52]  " 
                       >
                         Watch now
                       </Link>
@@ -84,7 +84,7 @@ const HeroCarousel = ({ movies }: Props) => {
 
                   {/* Poster: no backdrop-blur, lighter shadow */}
                   <div
-                    className={`hidden xl:flex h-[420px] w-[290px] shrink-0 items-end justify-center ${reveal} group-[.swiper-slide-active]:delay-300`}
+                    className={`hidden xl:flex h-[576px] w-[384px] shrink-0 items-end justify-center ${reveal} group-[.swiper-slide-active]:delay-300`}
                   >
                     <div className="relative h-full w-full overflow-hidden rounded-[30px] border border-white/10 bg-white/5 shadow-xl">
                       <Image
@@ -94,7 +94,7 @@ const HeroCarousel = ({ movies }: Props) => {
                         sizes="290px"
                         className="object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent" />
+                      <div className="absolute inset-0" />
                     </div>
                   </div>
                 </div>

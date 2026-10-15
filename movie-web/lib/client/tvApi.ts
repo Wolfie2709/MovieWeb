@@ -1,7 +1,9 @@
-import type { TV, TVDetails, VideoProps, Credits } from "../../../type";
+import type { TV, TVDetails, VideoProps, Credits, TVSeriesPage } from "../../../type";
 
 type TVResponse = {
   results: TV[];
+  page: number;
+  total_pages: number;
   error?: string;
 };
 
@@ -15,7 +17,7 @@ type SimilarTVResponse = {
   error?: string;
 };
 
-const fetchTVSeries = async (params: URLSearchParams): Promise<TV[]> => {
+const fetchTVSeries = async (params: URLSearchParams): Promise<TVSeriesPage> => {
   const response = await fetch(`/api/tv?${params.toString()}`, {
     cache: "no-store",
   });
@@ -24,17 +26,22 @@ const fetchTVSeries = async (params: URLSearchParams): Promise<TV[]> => {
     throw new Error(`Request failed: ${response.status}`);
   }
 
-  const data = (await response.json()) as TVResponse;
-  return data.results ?? [];
+ const data = (await response.json()) as TVResponse;
+  return {
+    results: data.results ?? [],
+    page: data.page ?? 1,
+    totalPages: data.total_pages ?? 1,
+  };
+
 };
 
-export const getTVByCategory = async (category: string): Promise<TV[]> => {
-  const params = new URLSearchParams({ category });
+export const getTVByCategory = async (category: string, page=1): Promise<TVSeriesPage> => {
+  const params = new URLSearchParams({ category,  page: page.toString() });
   return fetchTVSeries(params);
 };
 
-export const searchTVSeries = async (query: string): Promise<TV[]> => {
-  const params = new URLSearchParams({ query });
+export const searchTVSeries = async (query: string, page=1): Promise<TVSeriesPage> => {
+  const params = new URLSearchParams({ query,  page: page.toString() });
   return fetchTVSeries(params);
 };
 

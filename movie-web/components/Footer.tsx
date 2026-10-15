@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const footerLinks = [
   { href: '/', label: 'Home' },
@@ -25,13 +26,11 @@ const Footer = () => {
         backgroundPosition: 'center',
       }}
     >
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 py-5 md:px-8 md:py-16 lg:px-12 lg:py-20">
-        <div className="mb-10 flex items-center justify-center">
+      <div className="max-w-4xl h-full mx-auto flex flex-col justify-around">
+        <div className="mb-5 flex items-center justify-center">
           <Link href="/" className="group inline-flex items-center gap-3 text-white">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#7CCB5A] shadow-[0_0_22px_rgba(124,203,90,0.6)] md:h-12 md:w-12">
-              <span className="ml-1 h-0 w-0 border-y-[6px] border-l-[11px] border-y-transparent border-l-white md:border-y-[7px] md:border-l-[12px]" />
-            </span>
-            <span className="text-3xl font-semibold tracking-[-0.08em] transition-colors duration-200 group-hover:text-red-500 md:text-5xl">
+            <Image src="/tmovie-55621206.png" alt="theMovies Logo" width={50} height={50} />
+            <span className="text-2xl font-semibold transition-colors duration-200 group-hover:text-red-500 md:text-4xl">
               theMovies
             </span>
           </Link>
@@ -43,7 +42,7 @@ const Footer = () => {
               <Link
                 key={link.label}
                 href={link.href}
-                className="transition-all duration-200 hover:text-red-500 w-1/2 sm:w-1/3 px-2 py-1"
+                className="transition-all duration-200 hover:text-red-500 w-1/3 sm:w-1/3 px-2 py-1 padding-0,5"
               >
                 {link.label}
               </Link>
