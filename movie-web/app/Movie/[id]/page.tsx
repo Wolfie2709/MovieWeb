@@ -12,7 +12,9 @@ export async function generateMetadata({
 
   try {
     const movie = await getMovieDetails(id);
-    const image = getImagePath(movie.backdrop_path || movie.poster_path, true);
+   const path = movie.backdrop_path || movie.poster_path;
+    const image = path ? `https://image.tmdb.org/t/p/original/${path}` : "/theMovies.png";
+
 
     return {
       title: movie.title,
