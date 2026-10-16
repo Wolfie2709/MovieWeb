@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Movie Web",
     images: [
       {
-        url: "/theTVSeries.png",
+        url: "/theMovies.png",
         width: 1200,
         height: 630,
         alt: "TV Series",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TV Series",
     description: "Explore TV series from available list",
-    images: ["/theTVSeries.png"],
+    images: ["/theMovies.png"],
   },
 };
 
