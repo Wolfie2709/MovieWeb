@@ -8,7 +8,24 @@ import MovieCard from '@/components/MovieCard';
 import { getMoviesByCategory, searchMovies } from "@/lib/client/movieApi";
 import SearchInput from "@/components/SearchInput";
 import MovieCardSkeleton from "@/components/MovieCardSkeleton";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Movies",
+  description:"Explore movies from available movie list",
+  openGraph: {
+    title: "Movies",
+    description: "Explore movies from available movie list",
+    images:[
+      {
+        url: "/theMovies.png",
+        width: 1200,
+        height: 630,
+        alt: "Movies",
+      }
+    ],
+  },
+};
 
 const categoryNameMap: Record<string, string> = {
   "Now Playing": "now_playing",

@@ -8,6 +8,22 @@ import CastCard from "@/components/CastCard";
 import Image from "next/image";
 import { getImagePath } from "@/lib/getImagePath";
 import MovieDetailsSkeleton from '@/components/MovieDetailsSkeleton';
+import type { Metadata } from "next";
+
+export async function generateMetadata ({params}: {params: {id: string}}): Promise<Metadata> {
+  const {id} = await params;
+  const movie = await getMovieDetails(id);
+  return {
+    title: movie.title,
+    description: movie.overview,
+    openGraph: {
+      title: movie.title,
+      description: movie.overview,
+      siteName: "Movie Web",
+      images: [{ url: movie.backdrop_path, width: 1200, height: 630 }],
+    },
+  }
+}
 
 const MovieDetailsPage = () => {
   const params = useParams<{ id: string }>();
