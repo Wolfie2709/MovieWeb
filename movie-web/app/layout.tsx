@@ -13,8 +13,23 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://movie-web-3sb3.vercel.app"),
   title: "Movie Web",
   description: "Movie and streaming landing page built with Next.js and TypeScript.",
+  openGraph: {
+    type:"website",
+    url: "/",
+    title: "Movie Web",
+    description: "Movie and streaming landing page built with Next.js and TypeScript.",
+    images: [
+      {
+        url: "/theMovies.png",
+        width: 1200,
+        height: 630,
+        alt: "Movie Web",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
