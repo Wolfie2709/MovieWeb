@@ -42,7 +42,7 @@ const Footer = () => {
               <Link
                 key={link.label}
                 href={link.href}
-                className="transition-all duration-200 hover:text-red-500 w-1/3 sm:w-1/3 px-2 py-1 padding-0,5"
+                className="w-1/2 px-2 py-1 transition-all duration-200 hover:text-red-500 sm:w-1/3"
               >
                 {link.label}
               </Link>

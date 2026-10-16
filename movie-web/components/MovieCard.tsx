@@ -13,7 +13,7 @@ type MovieCardProps = {
 const MovieCard = ({ movie, mode = 'carousel' }: MovieCardProps) => {
   const containerClass = mode === 'grid'
     ? 'w-full'
-    : 'group shrink-0 w-[220px] sm:w-[220px] xl:w-[230px]';
+    : 'group shrink-0 w-[185px] sm:w-[220px] md:w-[230px]';
 
   return (
     <div className={containerClass}>

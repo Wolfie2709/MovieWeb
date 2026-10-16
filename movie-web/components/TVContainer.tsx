@@ -20,8 +20,8 @@ const TVContainer = ({ title, tv }: Props) => {
 
     return (
        <div className="mt-8 md:mt-16 mx-auto w-full px-3 md:px-4">
-  <div className="mb-4 flex items-center justify-between">
-    <h2 className="text-2xl uppercase font-bold tracking-wider text-white">{title}</h2>
+  <div className="flex items-center justify-between">
+    <h2 className="text-white font-medium text-lg md:text-2xl">{title}</h2>
     <Link href={viewMoreHref} className="btn-sm btn-default">View More</Link>
   </div>
 

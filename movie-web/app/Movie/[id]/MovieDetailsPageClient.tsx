@@ -110,7 +110,7 @@ const MovieDetailsPage = () => {
                   ))}
                 </div>
 
-                <p className="max-w-full flex text-white md:text-sm">{movieDetails?.overview}</p>
+                <p className=" flex max-w-full text-xs  text-white md:text-sm">{movieDetails?.overview}</p>
 
                 <h2 className="mb-1 mt-4 text-xl font-bold tracking-wide">Casts</h2>
                 <div className="mb-0 flex flex-wrap gap-3">

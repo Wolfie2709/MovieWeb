@@ -17,7 +17,7 @@ const CastCard = ({cast}:{cast:Cast}) => {
           className="h-[147px] w-full object-cover"
         />
       </div>
-      <p className="mt-2 text-left text-[1 rem] font-medium leading-tight text-white/90">{cast.name}</p>
+      <p className="mt-2 text-left text-sm font-medium leading-tight text-white/90 md: text-[1 rem]">{cast.name}</p>
     </div>
   )
 }
