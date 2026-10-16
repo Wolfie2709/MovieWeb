@@ -7,6 +7,7 @@ import { getMovieDetails, getMovieVideos, getMovieCredits, getSimilarMovies } fr
 import CastCard from "@/components/CastCard";
 import Image from "next/image";
 import { getImagePath } from "@/lib/getImagePath";
+import MovieDetailsSkeleton from '@/components/MovieDetailsSkeleton';
 
 const MovieDetailsPage = () => {
   const params = useParams<{ id: string }>();
@@ -56,7 +57,7 @@ const MovieDetailsPage = () => {
   });
 
   if (isDetailsLoading || isVideosLoading || isCreditsLoading) {
-    return <main className=" bg-black px-5 py-10 text-white">Loading movie...</main>;
+    return <MovieDetailsSkeleton />;
   }
 
   if (isDetailsError || isVideosError || isCreditsError) {

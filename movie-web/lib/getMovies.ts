@@ -2,24 +2,10 @@ import type { MovieDetails, SearchResults, Videos } from "../../type";
 
 const emptyPage = { page: 1, results: [], total_pages: 1, total_results: 0 };
 
-const getMoviesPage = async (
-  path: string,
-  page = 1,
-  extra: Record<string, string> = {}
-) => {
-  const url = new URL(`https://api.themoviedb.org/3/${path}?api_key=4f85134e0e3de33d9af45eb9596b5735`);
-  url.searchParams.set("api_key", process.env.TMDB_API_KEY ?? "");
-  url.searchParams.set("page", String(page));
-  Object.entries(extra).forEach(([key, value]) => url.searchParams.set(key, value));
-
-  const data = await fetcher<SearchResults>(url);
-  return data ?? emptyPage;
-};
 
 
 const fetcher = async <T>(url: URL, cacheTime?: number): Promise<T | null> => {
     try {
-        const token = process.env.TMDB_READ_ACCESS_KEY ?? process.env.TMDB_API_KEY;
         const headers = new Headers({ accept: "application/json", "Content-Type": "text/plain; charset=utf-8" });
         const response = await fetch(url.toString(), {
             method: "GET",
@@ -40,6 +26,21 @@ const fetcher = async <T>(url: URL, cacheTime?: number): Promise<T | null> => {
         console.error(`TMDB fetch failed for ${url.toString()}:`, error);
         return null;
     }
+};
+
+
+const getMoviesPage = async (
+  path: string,
+  page = 1,
+  extra: Record<string, string> = {}
+) => {
+  const url = new URL(`https://api.themoviedb.org/3/${path}?api_key=4f85134e0e3de33d9af45eb9596b5735`);
+  url.searchParams.set("api_key", process.env.TMDB_API_KEY ?? "");
+  url.searchParams.set("page", String(page));
+  Object.entries(extra).forEach(([key, value]) => url.searchParams.set(key, value));
+
+  const data = await fetcher<SearchResults>(url);
+  return data ?? emptyPage;
 };
 
 export const getUpcomingMovies = async() => {
