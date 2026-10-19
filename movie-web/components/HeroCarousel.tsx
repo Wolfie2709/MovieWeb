@@ -49,9 +49,9 @@ const HeroCarousel = ({ movies }: Props) => {
                 <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black to-transparent" />
               </div>
 
-              <div className="relative z-20 flex h-full items-center">
-                <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-8 px-6 md:px-10 xl:px-12">
-                  <div className="relative top-7 w-full lg:w-2/3 px-4 py-32 md:py-40 lg:py-48 xl:py-56">
+              <div className="relative z-20 flex h-full items-start pt-11 md:items-center md:pt-0">
+                <div className="mx-auto flex h-fit w-full max-w-[1600px] items-center justify-between gap-8 px-4 md:px-10 xl:px-12">
+                  <div className="w-full lg:w-2/3 px-4">
                     <h2
                       className={`text-4xl font-bold text-white md:text-6xl lg:text-8xl ${reveal} group-[.swiper-slide-active]:delay-300`}
                     >
@@ -59,17 +59,17 @@ const HeroCarousel = ({ movies }: Props) => {
                     </h2>
 
                     <p
-                      className={`my-12 text-xs font-medium  text-white md:text-xl ${reveal} group-[.swiper-slide-active]:delay-[600ms]`}
+                      className={`my-10 text-xs font-medium  text-white md:text-xl ${reveal} group-[.swiper-slide-active]:delay-[600ms]`}
                     >
                       {movie.overview}
                     </p>
 
                     <div
-                      className={`flex flex-wrap items-center gap-4 md:gap-1 text-white opacity-0 -translate-y-24 ${reveal} group-[.swiper-slide-active]:delay-[900ms]`}
+                      className={`flex flex-wrap items-center gap-1 md:gap-1 pt-4 md:pt-0 text-white opacity-0 -translate-y-24 ${reveal} group-[.swiper-slide-active]:delay-[900ms]`}
                     >
                       <Link
                         href={`/Movie/${movie.id}`}
-                        className="btn-lg btn-primary mr-4 height-[52]  " 
+                        className="btn-lg btn-primary mr-4  " 
                       >
                         Watch now
                       </Link>

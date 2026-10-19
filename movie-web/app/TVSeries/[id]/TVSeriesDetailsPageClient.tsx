@@ -85,23 +85,23 @@ return <TVDetailsSkeleton />;
           className="pt-8 md:pt-16"
         >
           <div className="relative px-4 md:px-5 lg:px-20 py-7 md:pt-8 md:py bg-center bg-no-repeat bg-cover z-0 before:content-[''] before:absolute before:bottom-0 before:left-0 before:right-0 before:h-1/2 before:bg-black-main before:-z-10 after:content-[''] after:absolute after:top-0 after:left-0 after:right-0 after:h-1/2 after:bg-gradient-to-t after:from-black-main after:to-transparent after:-z-10 ">
-            <div className="mb-0 grid gap-0 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[320px_minmax(0,1fr)] md:items-start">
-              <div className="mx-auto w-48 overflow-hidden rounded-[22px] border border-white/10 bg-zinc-900 shadow-xl md:mx-0 md:w-full md:h-[360px] lg:h-[500px] md:px-1">
+            <div className="flex grid gap-2 md:grid-cols-[210px_minmax(0,1fr)] lg:grid-cols-[280px_minmax(0,1fr)]  md:items-start">
+              <div className="hidden md:block mx-auto w-48 overflow-hidden rounded-[22px]  shadow-xl md:mx-0 md:w-full md:h-[360px] lg:h-[500px] ">
                 <Image
                   src={getImagePath(tvDetails?.poster_path || tvDetails?.backdrop_path)}
                   alt={tvDetails?.name || "TV series poster"}
-                  width={640}
-                  height={960}
+                  width={960}
+                  height={1280}
                   className="h-full w-full object-cover"
                 />
               </div>
 
-              <div className="px-4 pb-0 lg:pt-0">
-                <h1 className="mb-2 text-2xl font-bold md:text-5xl">{tvDetails?.name}</h1>
+              <div className="px-2 md:px-4 pb-0 lg:pt-0">
+                <h1 className="mb-2 text-3xl font-bold md:text-5xl">{tvDetails?.name}</h1>
 
                 <div className="py-4 flex flex-wrap gap-2 px-1 mb-4">
                   {tvDetails?.genres?.map((genre) => (
-                    <span key={genre.id} className="bg-black-main px-4 py-1 border-2 border-white rounded-full text-white text-xs lg:text-sm">
+                    <span key={genre.id} className="bg-black px-4 py-1 border-2 border-white rounded-full text-white text-xs lg:text-sm">
                       {genre.name}
                     </span>
                   ))}

@@ -56,10 +56,10 @@ const MoviePageHome = () => {
 
   return (
     <main className="min-h-screen bg-[#050505]/80 text-white">
-      <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] to-[#050505]/80 pb-8 pt-24 md:pt-28">
+      <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] to-[#050505]/80 pb-8 pt-20 md:pt-28">
         <div className="mx-auto max-w-[1500px] px-4 md:px-8 lg:px-10">
           <div className="mb-6 text-center">
-            <h1 className="text-xl font-black font-semibold text-white md:text-4xl">
+            <h1 className="text-4xl font-black font-semibold text-white md:text-4xl">
               {heading}
             </h1>
           </div>
@@ -120,7 +120,7 @@ export default function MoviePage() {
           <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] to-[#050505]/80 pb-8 pt-24 md:pt-28">
             <div className="mx-auto max-w-[1500px] px-4 md:px-8 lg:px-10">
               <div className="mb-6 text-center">
-                <h1 className="text-xl font-black font-semibold text-white md:text-4xl">Movies</h1>
+                <h1 className="text-4xl font-black font-semibold text-white md:text-4xl">Movies</h1>
               </div>
             </div>
           </div>
