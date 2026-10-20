@@ -55,8 +55,8 @@ const MoviePageHome = () => {
   }, [data]);
 
   return (
-    <main className="min-h-screen bg-[#050505]/80 text-white">
-      <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] to-[#050505]/80 pb-8 pt-20 md:pt-28">
+    <main className="min-h-screen bg-black-main text-white">
+      <div className="bg-gradient-to-b from-[#dfe2e6] via-[#7a7b7d] bg-black-main pb-8 pt-18 md:pt-26">
         <div className="mx-auto max-w-[1500px] px-4 md:px-8 lg:px-10">
           <div className="mb-6 text-center">
             <h1 className="text-4xl font-black font-semibold text-white md:text-4xl">
@@ -68,11 +68,12 @@ const MoviePageHome = () => {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1500px] px-4 pb-16 pt-4 md:px-8 lg:px-10">
-        <div className="flex items-center relative rounded-full bg-black w-full md:w-fit lg:w-fit mb-16">
+      <div className="bg-black-main px-4 md:px-8 py-8 xl:p-16">
+        <div className="max-w-screen-2xl mx-auto">
+        <div className="relative flex items-center relative rounded-full bg-black w-full md:w-fit lg:w-fit md:h-10">
           <SearchInput />
         </div>
-        <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+        <div className="mt-16 grid grid-cols-2 gap-x-3 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
 
           {isLoading
             ? Array.from({ length: 12 }).map((_, i) => (
@@ -106,6 +107,7 @@ const MoviePageHome = () => {
               </button>
             </div>
           )}
+        </div>
         </div>
       </div>
     </main>
