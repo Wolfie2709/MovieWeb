@@ -1,6 +1,7 @@
 // page.tsx (no "use client" here)
 import type { Metadata } from "next";
 import TVSeriesPageClient from "./TVSeriesPageClient";
+import MediaPage from "@/components/MediaPageClient";
 
 export const metadata: Metadata = {
   title: "TV Series",
@@ -28,5 +29,5 @@ export const metadata: Metadata = {
 };
 
 export default function TVSeriesPage() {
-  return <TVSeriesPageClient />;
+  return <MediaPage type="tv" />;
 }

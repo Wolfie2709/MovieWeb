@@ -1,6 +1,7 @@
 // page.tsx (no "use client" here)
 import type { Metadata } from "next";
 import MoviePageClient from "./MoviePageClient";
+import MediaPage from "@/components/MediaPageClient";
 
 export const metadata: Metadata = {
   title: "Movies",
@@ -28,5 +29,5 @@ export const metadata: Metadata = {
 };
 
 export default function MoviePage() {
-  return <MoviePageClient />;
+  return <MediaPage type="movie" />;
 }
