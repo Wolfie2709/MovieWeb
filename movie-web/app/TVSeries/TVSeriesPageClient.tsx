@@ -3,11 +3,11 @@
 import { Suspense, useEffect, useMemo } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import TVCard from '@/components/TVCard';
 import { getTVByCategory, searchTVSeries } from "@/lib/client/tvApi";
 import { useSearchStore } from "@/lib/store/searchStore";
 import SearchInput from "@/components/SearchInput";
-import TvCardSkeleton from "@/components/TvCardSkeleton";
+import CardSkeleton from "@/components/CardSkeleton";
+import MediaCard from "@/components/MediaCard";
 
 const categoryNameMap: Record<string, string> = {
   "On The Air": "on_the_air",
@@ -75,15 +75,15 @@ const TVSeriesPageHome = () => {
 
           {isLoading
             ? Array.from({ length: 12 }).map((_, i) => (
-              <TvCardSkeleton key={`sk-${i}`} mode="grid" />
+              <CardSkeleton key={`sk-${i}`} mode="grid" />
             ))
             : tvSeries.map((tv) => (
-              <TVCard key={tv.id} tv={tv} mode="grid" />
+              <MediaCard key={tv.id} item={tv} />
             ))}
 
           {isFetchingNextPage &&
             Array.from({ length: 6 }).map((_, i) => (
-              <TvCardSkeleton key={`more-${i}`} mode="grid" />
+              <CardSkeleton key={`more-${i}`} mode="grid" />
             ))}
         </div>
         {isError && (

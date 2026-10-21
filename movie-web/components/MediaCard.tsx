@@ -1,31 +1,33 @@
 "use client"
 import React from 'react'
 import Image from 'next/image';
-import { TV } from '../../type'
+import { TV,Movie } from '../../type'
 import { getImagePath } from '../lib/getImagePath';
 import Link from 'next/link';
 
-type TVCardProps = {
-  tv: TV;
-  mode?: 'grid' | 'carousel';
-};
+type MediaCardProps ={
+    item: Movie | TV;
 
-const TVCard = ({ tv, mode = 'carousel' }: TVCardProps) => {
-  const containerClass = mode === 'grid'
-    ? 'w-full'
-    : 'group shrink-0  w-[185px] sm:w-[220px] md:w-[230px]';
+}
 
+const isMovie= (item: Movie|TV): item is Movie => 'title' in item;
+
+const MediaCard = ({item}: MediaCardProps) => {
+
+  const title = isMovie(item)? item.title : item.name;
+  const href = isMovie(item)? `/Movie/${item.id}` : `/TVSeries/${item.id}`
+    
   return (
-    <div className={containerClass}>
-      <Link href={`/TVSeries/${tv.id}`} className="group/container block cursor-pointer">
+    <div className="w-full">
+      <Link href={href} className="group/container block cursor-pointer">
         <div className="group/poster relative overflow-hidden rounded-3xl z-10">
           <Image
-  src={getImagePath(tv?.poster_path || tv?.backdrop_path)}
-  alt={tv.name}
-  width={380}
-  height={570}
-  className="relative w-full h-72 2xl:h-80 object-cover rounded-3xl after:content-[''] after:absolute after:inset-0 after:rounded-3xl hover:after:bg-black/60 after:transition after:ease-in-out after:duration-300"
-/>
+            src={getImagePath(item.poster_path || item?.backdrop_path)}
+            alt={title}
+            width={380}
+            height={570}
+            className="relative w-full h-72 2xl:h-80 object-cover rounded-3xl bg-center bg-no-repeat bg-cover group/poster after:content-[''] after:absolute after:top-0 after:right-0 after:bottom-0 after:left-0 after:rounded-3xl hover:after:bg-black/60 after:transition after:ease-in-out after:duration-300"
+          />
           <div className="pointer-events-none absolute inset-0 bg-black/0 transition duration-300 group-hover/container:bg-black/35" />
           <button
             type="button"
@@ -39,11 +41,11 @@ const TVCard = ({ tv, mode = 'carousel' }: TVCardProps) => {
           </button>
         </div>
         <h3 className="mt-4 line-clamp-2 text-sm md:text-lg font-medium text-white transition duration-300 ease-in-out group-hover/container:text-red-main">
-          {tv.name}
+          {title}
         </h3>
       </Link>
     </div>
   )
 }
 
-export default TVCard;
+export default MediaCard

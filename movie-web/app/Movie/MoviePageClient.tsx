@@ -4,10 +4,10 @@ import { Suspense, useEffect, useMemo } from "react";
 import { useSearchStore } from "@/lib/store/searchStore";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
-import MovieCard from '@/components/MovieCard';
 import { getMoviesByCategory, searchMovies } from "@/lib/client/movieApi";
 import SearchInput from "@/components/SearchInput";
-import MovieCardSkeleton from "@/components/MovieCardSkeleton";
+import CardSkeleton from "@/components/CardSkeleton";
+import MediaCard from "@/components/MediaCard";
 
 
 const categoryNameMap: Record<string, string> = {
@@ -77,15 +77,15 @@ const MoviePageHome = () => {
 
           {isLoading
             ? Array.from({ length: 12 }).map((_, i) => (
-              <MovieCardSkeleton key={`sk-${i}`} mode="grid" />
+              <CardSkeleton key={`sk-${i}`} mode="grid" />
             ))
             : movies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} mode="grid" />
+              <MediaCard key={movie.id} item={movie}  />
             ))}
 
           {isFetchingNextPage &&
             Array.from({ length: 6 }).map((_, i) => (
-              <MovieCardSkeleton key={`more-${i}`} mode="grid" />
+              <CardSkeleton key={`more-${i}`} mode="grid" />
             ))}
         </div>
 
@@ -130,7 +130,7 @@ export default function MoviePage() {
             <div className="mb-16 h-12 w-full rounded-full bg-black md:w-96" />
             <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
               {Array.from({ length: 12 }).map((_, i) => (
-                <MovieCardSkeleton key={i} mode="grid" />
+                <CardSkeleton key={i} mode="grid" />
               ))}
             </div>
           </div>

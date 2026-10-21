@@ -1,15 +1,12 @@
 "use client";
 import React from 'react'
-import SimilarContainer from '@/components/SimilarContainer';
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { getMovieDetails, getMovieVideos, getMovieCredits, getSimilarMovies } from "@/lib/client/movieApi";
-import CastCard from "@/components/CastCard";
-import Image from "next/image";
-import { getImagePath } from "@/lib/getImagePath";
-import MovieDetailsSkeleton from '@/components/MovieDetailsSkeleton';
 import DetailsHero from '@/components/DetailsHero';
 import VideoContainer from '@/components/VideoContainer';
+import MediaContainer from '@/components/MediaContainer';
+import DetailsSkeleton from '@/components/DetailsSkeleton'
 
 
 const MovieDetailsPage = () => {
@@ -56,7 +53,7 @@ const MovieDetailsPage = () => {
   
 
   if (isVideosLoading||isLoading) {
-    return <MovieDetailsSkeleton />;
+    return <DetailsSkeleton />;
   }
 
   if (isVideosError) {
@@ -69,7 +66,7 @@ const MovieDetailsPage = () => {
   
 
   return (
-    <main className=" bg-black text-white">
+    <main className=" bg-black text-white mx-auto">
       <div className="w-full">
         <DetailsHero
           title={movie.title}
@@ -80,7 +77,7 @@ const MovieDetailsPage = () => {
           cast={credits?.cast ?? []} />
         <VideoContainer videos={movieVideos} />
         <div className="space-y-8 pb-16">
-          <SimilarContainer items={similarMovies} mediaType="movie" title="Similar Movies" />
+          <MediaContainer items={similarMovies} mediaType="movie" title="Similar Movies"/>
         </div>
       </div>
     </main>

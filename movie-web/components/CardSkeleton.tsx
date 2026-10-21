@@ -1,6 +1,6 @@
 type Props = { mode?: "grid" | "carousel" };
 
-const TvCardSkeleton = ({ mode = "grid" }: Props) => {
+const CardSkeleton = ({ mode = "grid" }: Props) => {
   const containerClass =
     mode === "grid" ? "w-full" : "shrink-0 w-[220px] sm:w-[220px] xl:w-[230px]";
 
@@ -17,4 +17,4 @@ const TvCardSkeleton = ({ mode = "grid" }: Props) => {
   );
 };
 
-export default TvCardSkeleton;
+export default CardSkeleton; 

@@ -1,12 +1,12 @@
 "use client";
 import React from 'react';
-import SimilarContainer from '@/components/SimilarContainer';
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { getTVDetails, getTVVideos, getTVCredits, getSimilarTVSeries } from "@/lib/client/tvApi";
-import TVDetailsSkeleton from '@/components/TVDetailsSkeleton';
 import DetailsHero from '@/components/DetailsHero';
 import VideoContainer from '@/components/VideoContainer';
+import MediaContainer from '@/components/MediaContainer';
+import DetailsSkeleton from '@/components/DetailsSkeleton'
 
 const TVDetailsPage = () => {
   const params = useParams<{ id: string }>();
@@ -54,7 +54,7 @@ const TVDetailsPage = () => {
   });
 
   if (isDetailsLoading || isVideosLoading || isCreditsLoading) {
-return <TVDetailsSkeleton />;
+return <DetailsSkeleton />;
   }
 
   if (isDetailsError || isVideosError || isCreditsError) {
@@ -77,7 +77,7 @@ return <TVDetailsSkeleton />;
           cast={tvCredits?.cast ?? []} />
         <VideoContainer videos={tvVideos} />
         <div className="space-y-8 pb-16">
-          <SimilarContainer items={similarTVSeries} mediaType="tv" title="Similar TV Series" />
+          <MediaContainer items={similarTVSeries} mediaType="tv" title="Similar TV Series" />
         </div>
       </div>
     </main>

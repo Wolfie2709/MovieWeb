@@ -1,13 +1,12 @@
 import React from 'react'
 import CastCardSkeleton from "@/components/CastCardSkeleton";
-import MovieCardSkeleton from "@/components/MovieCardSkeleton";
 
 
 const Bar = ({ className = "" }: { className?: string }) => (
     <div className={`rounded bg-white/10 ${className}`} />
 );
 
-const MovieDetailsSkeleton = () => {
+const DetailsSkeleton = () => {
 
     return (
         <div className="w-full animate-pulse" aria-hidden="true">
@@ -42,4 +41,4 @@ const MovieDetailsSkeleton = () => {
     )
 }
 
-export default MovieDetailsSkeleton
+export default DetailsSkeleton

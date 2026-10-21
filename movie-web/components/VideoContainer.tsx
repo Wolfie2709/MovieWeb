@@ -12,7 +12,7 @@ const VideoContainer = ({videos, limit=4}: VideoContainerProps) => {
   const otherYoutubeVideos = youtubeVideos.filter((video) => video.type !== "Trailer");
   const featuredVideos = [...trailerVideos, ...otherYoutubeVideos].slice(0, limit);
   return (
-            <div className="px-5 pb-8 md:px-8">
+            <div className="px-5 pb-8 md:px-8 lg:px-16">
           {featuredVideos.length > 0 ? (
             <div className="gap-5 ">
               {featuredVideos.map((video) => (
