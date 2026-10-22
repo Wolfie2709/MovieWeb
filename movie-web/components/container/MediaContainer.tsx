@@ -1,9 +1,9 @@
 "use client"
 import React from 'react'
 
-import type { Movie, TV } from "../../type.ts";
+import type { Movie, TV } from "../../../type.js";
 import Link from 'next/link';
-import MediaCard from './MediaCard';
+import MediaCard from '../card/MediaCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode } from 'swiper/modules';
 import 'swiper/css'

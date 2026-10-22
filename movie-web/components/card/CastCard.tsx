@@ -1,8 +1,8 @@
 "use client"
 import React from 'react'
 import Image from 'next/image';
-import { Cast } from '../../type'
-import {getImagePath} from '../lib/getImagePath';
+import { Cast } from '../../../type'
+import {getImagePath} from '../../lib/getImagePath';
 
 
 const CastCard = ({cast}:{cast:Cast}) => {

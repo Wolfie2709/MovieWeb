@@ -8,8 +8,8 @@ import { getMoviesByCategory, searchMovies } from "@/lib/client/movieApi";
 import { getTVByCategory, searchTVSeries } from '@/lib/client/tvApi';
 import { MoviesPage, TVSeriesPage,  Movie, TV } from '../../type';
 import SearchInput from "@/components/SearchInput";
-import CardSkeleton from "@/components/CardSkeleton";
-import MediaCard from "@/components/MediaCard";
+import CardSkeleton from "@/components/Skeleton/CardSkeleton";
+import MediaCard from "@/components/card/MediaCard";
 
 type MediaItem = Movie | TV;
 

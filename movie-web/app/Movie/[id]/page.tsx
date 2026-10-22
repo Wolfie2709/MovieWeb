@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import MovieDetailsClient from "./MovieDetailsPageClient";
+
+import DetailsPageClient from "@/components/DetailsPageClient";
 
 async function getMovieForMeta(id: string) {
   const res = await fetch(
@@ -55,5 +56,5 @@ export async function generateMetadata({
 }
 
 export default function Page() {
-  return <MovieDetailsClient />;
+  return <DetailsPageClient mediaType="movie" />;
 }

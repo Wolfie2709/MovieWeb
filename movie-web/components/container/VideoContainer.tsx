@@ -1,5 +1,5 @@
 import React from 'react'
-import { VideoProps } from '../../type'
+import { VideoProps } from '../../../type'
 
 type VideoContainerProps = {
     videos: VideoProps[];

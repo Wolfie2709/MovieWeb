@@ -1,8 +1,8 @@
 "use client"
 import React from 'react'
 import Image from 'next/image';
-import { TV,Movie } from '../../type'
-import { getImagePath } from '../lib/getImagePath';
+import { TV,Movie } from '../../../type'
+import { getImagePath } from '../../lib/getImagePath';
 import Link from 'next/link';
 
 type MediaCardProps ={

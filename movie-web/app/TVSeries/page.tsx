@@ -1,6 +1,6 @@
-// page.tsx (no "use client" here)
+
 import type { Metadata } from "next";
-import TVSeriesPageClient from "./TVSeriesPageClient";
+
 import MediaPage from "@/components/MediaPageClient";
 
 export const metadata: Metadata = {

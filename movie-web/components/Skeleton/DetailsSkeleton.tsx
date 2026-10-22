@@ -1,5 +1,5 @@
 import React from 'react'
-import CastCardSkeleton from "@/components/CastCardSkeleton";
+import CastCardSkeleton from "@/components/Skeleton/CastCardSkeleton";
 
 
 const Bar = ({ className = "" }: { className?: string }) => (

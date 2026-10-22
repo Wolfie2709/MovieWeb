@@ -3,7 +3,7 @@ import React from "react";
 import CarouselBanner from "../components/carouselBanner";
 import { getNowPlayingMovies, getPopularMovies, getTopRatedMovies } from "../lib/getMovies";
 import {getPopularTVSeries, getTopRatedTVSeries} from "../lib/getTVSeries";
-import MediaContainer from "@/components/MediaContainer";
+import MediaContainer from "@/components/container/MediaContainer";
 
 export default async function Home() {
   const nowPlayingMovies = await getNowPlayingMovies();

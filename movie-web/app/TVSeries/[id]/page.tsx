@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import TVDetailsPageClient from "./TVSeriesDetailsPageClient";
+import DetailsPageClient from "@/components/DetailsPageClient";
 
 async function getTVForMeta(id: string) {
   const res = await fetch(
@@ -55,5 +55,5 @@ export async function generateMetadata({
 }
 
 export default function Page() {
-  return <TVDetailsPageClient />;
+  return <DetailsPageClient mediaType="tv"/>;
 }
