@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Movie } from "../../type";
@@ -8,20 +8,22 @@ import { getImagePath } from "../lib/getImagePath";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import TrailerModal from "./TrailerModal";
 
 interface Props {
   movies: Movie[];
 }
 
-// Shared animation: hidden by default, animates in when Swiper marks the slide active.
 const reveal =
  "opacity-0 -translate-y-24 transition duration-700 ease-in-out " +
   "group-[.swiper-slide-active]:opacity-100 group-[.swiper-slide-active]:translate-y-0";
 
 const HeroCarousel = ({ movies }: Props) => {
+  const[trailerMovieId, setTrailerMovieId] = useState<number|null>(null);
   if (!movies?.length) return null;
 
   return (
+    <>
     <section className="relative isolate overflow-hidden bg-black text-white">
       <Swiper
         modules={[Autoplay]}
@@ -73,12 +75,13 @@ const HeroCarousel = ({ movies }: Props) => {
                       >
                         Watch now
                       </Link>
-                      <Link
-                        href={`/Movie/${movie.id}`}
-                        className="btn-lg btn-default"
+                     <button
+                     type= "button"
+                     onClick={() => setTrailerMovieId(movie.id)}
+                      className= "btn-lg btn-default"
                       >
-                        Watch trailer
-                      </Link>
+                        Watch Trailer
+                     </button>
                     </div>
                   </div>
 
@@ -104,6 +107,11 @@ const HeroCarousel = ({ movies }: Props) => {
         })}
       </Swiper>
     </section>
+
+        <TrailerModal
+    movieId={trailerMovieId}
+    onClose={() => setTrailerMovieId(null)}/>
+    </>
   );
 };
 

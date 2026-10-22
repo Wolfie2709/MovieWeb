@@ -3,6 +3,7 @@
 import React from 'react'
 import {getDiscoverMovies} from "../lib/getMovies";
 import HeroCarousel from './HeroCarousel';
+import TrailerModal from './TrailerModal';
 
 interface Props {
     id?:string;
